@@ -1,0 +1,2797 @@
+\documentclass[aspectratio=169]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage{url}
+\usepackage{framed}
+\usepackage{xcolor}
+\usepackage{colortbl}
+\usepackage{multimedia}
+\usepackage{textpos}
+\colorlet{shadecolor}{gray!25}
+\usepackage{beamerthemesplit}
+\usepackage{graphics,epsfig, subfigure}
+\usepackage{url}
+\usepackage{tikz}
+\usepackage{booktabs}
+\usepackage[unicode,breaklinks=true]{hyperref}
+\usepackage{listings}
+\lstset{
+  basicstyle=\ttfamily\small,
+  columns=fullflexible,
+  keepspaces=true,
+  showstringspaces=false
+}
+
+
+\newcommand{\btVFill}{\vskip0pt plus 1filll}
+\setbeamercovered{transparent}
+\mode<presentation>
+{  \usetheme{Copenhagen}
+	% \usecolortheme{crane}
+	\usecolortheme{beaver}
+	\useinnertheme{circles}
+	\usefonttheme[onlymath]{serif}
+	\setbeamercovered{transparent}
+	\setbeamertemplate{blocks}[rounded][shadow=true]
+	
+	
+}
+\usecolortheme{beaver}
+\setlength{\parindent}{0pt}
+
+\definecolor{myNewColorA}{HTML}{00afcb}
+\definecolor{myNewColorB}{rgb}{132,158,139}
+
+\setbeamercolor{itemize item}{fg=myNewColorA}
+\setbeamercolor{itemize subitem}{fg=myNewColorA}
+\setbeamertemplate{itemize item}[circle]
+\setbeamertemplate{itemize subitem}[square]
+
+
+\setbeamercolor*{palette primary}{bg=myNewColorA, fg = black}
+\setbeamercolor*{palette secondary}{bg=myNewColorA, fg = black}
+\setbeamercolor*{palette tertiary}{bg=myNewColorB, fg = black}
+\setbeamercolor*{palette quaternary}{bg=myNewColorB, fg = black}
+\setbeamercolor{frametitle}{fg=black}
+
+
+\addtobeamertemplate{navigation symbols}{}{%
+	\usebeamerfont{footline}%
+	\usebeamercolor[fg]{footline}%
+	\hspace{1em}%
+	\insertframenumber
+}
+
+\addtobeamertemplate{title page}{}{
+	\begin{tikzpicture}[overlay]
+		\node[xshift=-2cm,yshift=-0.5cm] at (current page.north east){%
+			\includegraphics[width=0.33\textwidth]{../figures/FHJ.pdf}};
+	\end{tikzpicture}
+}
+
+\addtobeamertemplate{frametitle}{}{
+	\begin{tikzpicture}[remember picture, overlay]
+		\node[xshift=-2cm,yshift=-0.5cm] at (current page.north east){%
+			\includegraphics[width=0.33\textwidth]{../figures/FHJ.pdf}};
+	\end{tikzpicture}
+}
+% ----------------------------
+% Helpers
+% ----------------------------
+\newcommand{\KeyQ}[1]{\textbf{Key question:} #1}
+\newcommand{\Activity}[1]{\textbf{Activity:} #1}
+\newcommand{\Takeaway}[1]{\textbf{Takeaway:} #1}
+\newcommand{\Deliverable}[1]{\textbf{Deliverable:} #1}
+
+% Shortcuts for consistent slide patterns
+\newcommand{\MiniAgenda}[1]{\vspace{0.5em}\textbf{Today:} #1}
+\newcommand{\DoDont}[2]{\textbf{Do:} #1 \;\;\; \textbf{Don't:} #2}
+
+
+\title[Scientific working]{Scientific working} 
+
+\author[Schappacher-Tilp] {Gudrun Schappacher-Tilp}
+
+\institute[FH JOANNEUM] 
+{Electronic Engineering, FH JOANNEUM
+}
+\date{\today}
+
+% ----------------------------
+% Document
+% ----------------------------
+\begin{document}
+
+% =========================================================
+% FRONT MATTER
+% =========================================================
+
+	\begin{frame}
+		\begin{center}
+				\begin{tikzpicture}[remember picture, overlay]
+				\node[xshift=-2cm,yshift=-0.5cm] at (current page.north east){%
+					\includegraphics[width=0.33\textwidth]{../figures/FHJ.pdf}};
+			\end{tikzpicture}
+			\vspace{2.4cm}
+			
+			\textbf{\Large{Scientific Working}}\\
+			\vspace{1.5cm}
+			Gudrun SCHAPPACHER-TILP\\
+			\vspace{0.1cm}
+			\vspace{0.5cm}2026
+		\end{center}
+	\end{frame}
+
+\begin{frame}{Course structure}
+  \begin{itemize}
+    \item Module 1: Foundations of Science \& Ethics
+    \item Module 2: State of the Art \& Digital Research 
+    \item Module 3: Methodology \& Data Management
+    \item Module 4: Technical Implementation 
+    \item Module 5: Scientific Writing \& Peer Review 
+    \item Module 6: Mini conference (student presentations)
+  \end{itemize}
+  \vspace{0.8em}
+  \Takeaway{The goal is not just ``knowing tools'', but producing defendable, reproducible, and clearly communicated research.}
+\btVFill
+\end{frame}
+
+\begin{frame}{Learning outcomes}
+  After this course, you can:\\
+  \bigskip
+  \begin{itemize}
+    \item Formulate a research question and justify originality (gap-based)
+    \item Conduct a reproducible state-of-the-art search and synthesis
+    \item Choose and defend an appropriate methodology
+    \item Design a reproducible workflow for data, code, and figures
+    \item Write a clear IMRAD report and handle peer review feedback
+    \item Use AI tools responsibly and ensure digital persistence (DOI/ORCID)
+    \item Defend your research in a mini-conference setting
+  \end{itemize}\btVFill
+
+\end{frame}
+
+\begin{frame}{How we work in each module}
+  \begin{itemize}
+    \item Concept block (why it matters)
+    \item Concrete examples (good and bad)
+    \item A short exercise to practice
+    \item A mini-deliverable that accumulates across the course
+  \end{itemize}
+\btVFill
+\end{frame}
+
+% =========================================================
+% MODULE 1: FOUNDATIONS OF SCIENCE & ETHICS (2h)
+% =========================================================
+
+\begin{frame}{Module 1 overview}
+  \begin{itemize}
+    \item What is scientific working?
+    \item The scientific method as an iterative loop
+    \item Originality and contributions
+    \item Ethics beyond plagiarism
+    \item Responsible AI/LLM use
+  \end{itemize}\btVFill
+
+\end{frame}
+
+\begin{frame}{Scientific working: definition}
+  \begin{itemize}
+    \item Projects involving advanced scholarship that makes an (original) contribution to knowledge
+    \item Not only building something, but justifying claims with evidence
+    \item Making scope decisions explicit: what you do and do not address
+  \end{itemize}
+\btVFill
+\end{frame}
+
+
+\begin{frame}{What is science?}
+ \url{https://www.youtube.com/watch?v=EYPapE-3FRw}
+\end{frame}
+
+
+\begin{frame}{A very basic scientific workflow}
+  \begin{itemize}
+    \item Observe aspects you are interested in
+    \item If something is not well understood, speculate about an explanation
+    \item Find a way to test your speculations
+  \end{itemize}
+    \btVFill
+\end{frame}
+
+\begin{frame}{A very basic scientific workflow}
+  \begin{itemize}
+    \item Observe aspects you are interested in
+    \item If something is not well understood, speculate about an explanation
+    \item Find a way to test your speculations
+  \end{itemize}
+  \bigskip
+  \Activity{Write one observation from your domain and one testable speculation.}
+  \btVFill
+\end{frame}
+
+\begin{frame}{Scientific method (structured view)}
+  \url{https://www.youtube.com/watch?v=Viv7bs99K0U&t=881s
+  }\\
+  (Minute 14:40--17:40 for the structured view)
+\end{frame}
+
+\begin{frame}{Scientific method (structured view)}
+  \begin{itemize}
+    \item Characterisation (make a guess based on experience/observation)
+    \item Hypothesis (propose an explanation)
+    \item Deduction (derive predictions)
+    \item Experiment (test predictions)
+  \end{itemize}
+  \bigskip
+  \Takeaway{Science is iterative: revisions are expected and valuable.}
+  \btVFill
+\end{frame}
+
+\begin{frame}{Scientific method (structured view)}
+	
+		\begin{tikzpicture}[remember picture,overlay]
+			\node[xshift=-6.5cm,yshift=-4.6cm] at (current page.north east){%
+				\includegraphics[width=0.65\textwidth]{../figures/TheScientificMethod_Cut.png}};
+		\end{tikzpicture}
+		\btVFill\hspace{-0.5cm}\tiny{Dodig-Crnkovic (2002). Scientific methods in computer science.\\ \hspace{-0.5cm}Proc Conf Promotion Research IT at New Univ, Univ Colleges in Sweden (126-130).}
+	\end{frame}
+
+
+\begin{frame}{Start with a concrete problem}
+  \begin{itemize}
+    \item Always start with a concrete problem
+    \item Then write a clear description of the problem:
+      \begin{itemize}
+        \item What do you want to investigate?
+        \item Be as precise as possible: you cannot investigate everything in one work
+        \item Cut the clutter (in thinking and in writing)
+      \end{itemize}
+  \end{itemize}
+  \btVFill
+\end{frame}
+
+\begin{frame}{Originality: what counts as a contribution?}
+  \begin{itemize}
+    \item New data (dataset, measurements, observations)
+    \item New method (algorithm, apparatus, protocol)
+    \item New analysis (insight from existing data)
+    \item New integration (combining ideas across fields)
+    \item New evaluation boundary (where existing methods fail/succeed)
+  \end{itemize}
+    \btVFill
+\end{frame}
+
+\begin{frame}{Originality through new data}
+  \begin{itemize}
+    \item Creating high-quality datasets can be a major scientific contribution
+    \item Especially valuable when data are:
+      \begin{itemize}
+        \item expensive or difficult to obtain
+        \item ethically or technically constrained
+        \item previously unavailable
+      \end{itemize}
+  \end{itemize}
+  \vspace{0.5em}
+  \textbf{Example:}
+  \begin{itemize}
+    \item Deng et al. (2009): \emph{ImageNet: A Large-Scale Hierarchical Image Database}
+    \item Introduced a massive labeled image dataset that enabled modern deep learning
+    \item Methodologically simple, but transformational via data availability
+  \end{itemize}
+  \vspace{0.3em}
+  \tiny
+  \url{https://doi.org/10.1109/CVPR.2009.5206848}
+\end{frame}
+
+\begin{frame}{Originality through new methods}
+  \begin{itemize}
+    \item New algorithms, models, protocols, or experimental setups
+    \item Often the most visible type of originality
+    \item Must be:
+      \begin{itemize}
+        \item clearly described
+        \item reproducible
+        \item compared against existing methods
+      \end{itemize}
+  \end{itemize}
+
+  \vspace{0.5em}
+  \textbf{Example:}
+  \begin{itemize}
+    \item Vaswani et al. (2017): \emph{Attention Is All You Need}
+    \item Introduced the Transformer architecture
+    \item Replaced recurrence with attention mechanisms
+  \end{itemize}
+
+  \vspace{0.3em}
+  \tiny
+  \url{https://arxiv.org/abs/1706.03762}
+\end{frame}
+
+\begin{frame}{Originality through new analysis (engineering example)}
+  \begin{itemize}
+    \item Re-analyzing existing engineering data can produce \emph{new} insight
+    \item Especially powerful when:
+      \begin{itemize}
+        \item the data are historically important (accidents, failures, reliability logs)
+        \item new statistical tools improve inference (e.g., Bayesian models, better uncertainty handling)
+      \end{itemize}
+  \end{itemize}
+
+  \vspace{0.5em}
+  \textbf{Example (Aerospace / reliability):}
+  \begin{itemize}
+    \item Marzanzano and Krysztofowicz (2008): \emph{Bayesian reanalysis of the Challenger O-ring data}
+    \item Same underlying pre-launch O-ring performance data (temperature vs.\ damage)
+    \item New analysis: better uncertainty quantification for extrapolation to low temperatures
+  \end{itemize}
+
+  \vspace{0.3em}
+    \tiny
+  \url{ https://doi.org/10.1111/j.1539-6924.2008.01081.x}
+
+\end{frame}
+
+
+\begin{frame}{Originality through integration}
+  \begin{itemize}
+    \item Combining concepts, methods, or theories from different fields
+    \item Often undervalued but scientifically powerful
+    \item Requires deep understanding of \emph{both} domains
+  \end{itemize}
+
+  \vspace{0.5em}
+  \textbf{Example:}
+  \begin{itemize}
+    \item Watts \& Strogatz (1998): \emph{Collective dynamics of small-world networks}
+    \item Integrated graph theory with empirical social and biological networks
+    \item Launched modern network science
+  \end{itemize}
+
+  \vspace{0.3em}
+  \tiny
+  \url{https://doi.org/10.1038/30918}
+\end{frame}
+
+\begin{frame}{Originality through new evaluation boundaries}
+  \begin{itemize}
+    \item Showing where existing methods fail is a valid contribution
+    \item Especially relevant for:
+      \begin{itemize}
+        \item robustness
+        \item safety
+        \item real-world deployment
+      \end{itemize}
+  \end{itemize}
+
+  \vspace{0.5em}
+  \textbf{Example:}
+  \begin{itemize}
+    \item Recht et al. (2019): \emph{Do ImageNet Classifiers Generalize to ImageNet?}
+    \item Demonstrated performance drops under distribution shift
+    \item Challenged overly optimistic benchmarks
+  \end{itemize}
+
+  \vspace{0.3em}
+  \tiny
+  \url{https://arxiv.org/abs/1902.10811}
+\end{frame}
+
+\begin{frame}{Originality: a reality check}
+  \begin{itemize}
+    \item Most scientific contributions are:
+      \begin{itemize}
+        \item incremental
+        \item contextual
+        \item problem-driven
+      \end{itemize}
+    \item Radical novelty is rare and not required
+  \end{itemize}
+    \btVFill
+\end{frame}
+
+
+\begin{frame}{Originality: what counts as a contribution?}
+  \begin{itemize}
+    \item New data (dataset, measurements, observations)
+    \item New method (algorithm, apparatus, protocol)
+    \item New analysis (insight from existing data)
+    \item New integration (combining ideas across fields)
+    \item New evaluation boundary (where existing methods fail/succeed)
+  \end{itemize}
+  \bigskip
+  \Activity{Draft a one-sentence contribution statement for your master theses topic.}
+  \btVFill
+\end{frame}
+
+
+\begin{frame}{Ethics in science}
+		\begin{tikzpicture}[remember picture,overlay]
+		\node[xshift=-4cm,yshift=-4cm] at (current page.north east){%
+      \includegraphics[width=0.6\textwidth]{../figures/ethics.png}};
+  \end{tikzpicture}
+\end{frame}
+
+
+\begin{frame}{Ethics in science}
+  \begin{itemize}
+    \item Plagiarism: taking ideas or text without citation is stealing
+    \item Data integrity: fabrication, falsification, selective reporting
+    \item Publication ethics: duplicate publication, salami slicing
+    \item Authorship responsibility: credit and accountability
+  \end{itemize}
+  \btVFill
+\end{frame}
+
+\begin{frame}{Ethics: Plagiarism}
+  \begin{itemize}
+    \item Plagiarism includes:
+      \begin{itemize}
+        \item copying text without citation
+        \item paraphrasing ideas without attribution
+        \item self-plagiarism (reusing your own published text without disclosure)
+      \end{itemize}
+  \end{itemize}
+
+  \vspace{0.5em}
+  \textbf{Case:}
+  \begin{itemize}
+    \item IEEE retracted multiple papers by Anil Potti et al.
+    \item Large parts of text and ideas reused across publications
+    \item Lack of proper citation and disclosure
+  \end{itemize}
+
+  \vspace{0.3em}
+  \tiny
+  Retraction summary: \url{https://retractionwatch.com/2010/11/12/duke-cancer-researcher-anil-potti-resigns/}
+
+  \vspace{0.5em}
+  
+\end{frame}
+\begin{frame}{Ethics: data integrity}
+  \begin{itemize}
+    \item Data integrity violations include:
+      \begin{itemize}
+        \item fabrication (making up data)
+        \item falsification (altering data)
+        \item selective reporting (cherry-picking results)
+      \end{itemize}
+  \end{itemize}
+
+  \vspace{0.5em}
+  \textbf{Case:}
+  \begin{itemize}
+    \item Stapel (2011): large-scale fraud in social psychology
+    \item Dozens of papers retracted
+    \item Entire datasets were fabricated
+  \end{itemize}
+
+  \vspace{0.3em}
+  \tiny
+ \tiny
+\url{https://www.tilburguniversity.edu/sites/default/files/download/Final\%20report\%20Flawed\%20Science\_2.pdf}
+  \end{frame}
+
+
+\begin{frame}{Ethics: publication ethics}
+  \begin{itemize}
+    \item Unethical publication practices include:
+      \begin{itemize}
+        \item duplicate publication (same results, multiple journals)
+        \item salami slicing (splitting one study into minimal publishable units)
+      \end{itemize}
+  \end{itemize}
+
+  \vspace{0.5em}
+  \textbf{Case:}
+  \begin{itemize}
+    \item Yoshitaka Fujii (2012): anesthesiology research
+    \item Over 180 papers retracted
+    \item Repeated publication of overlapping or fabricated results
+  \end{itemize}
+
+  \vspace{0.3em}
+  \tiny
+  Retraction overview: \url{https://retractionwatch.com/2016/02/03/2001-fujii-papers-retracted-finally-what-took-so-long/}
+
+  \vspace{0.5em}
+\end{frame}
+
+\begin{frame}{Ethics: authorship responsibility}
+  \begin{itemize}
+    \item Authorship implies:
+      \begin{itemize}
+        \item intellectual contribution
+        \item responsibility for the content
+        \item accountability for misconduct
+      \end{itemize}
+    \item Problems include:
+      \begin{itemize}
+        \item honorary authorship
+        \item ghost authorship
+        \item denial of responsibility when issues arise
+      \end{itemize}
+  \end{itemize}
+
+  \vspace{0.5em}
+  \textbf{Case:}
+  \begin{itemize}
+    \item Sch\"on scandal (2002, Bell Labs)
+    \item Co-authors failed to verify implausible results
+    \item Multiple high-profile retractions
+  \end{itemize}
+
+  \vspace{0.3em}
+  \tiny
+  \url{https://en.wikipedia.org/wiki/Sch\%C3\%B6n_scandal}\\
+  \url{https://journals.aps.org/reports/lucentreport.html}
+  \vspace{0.5em}
+\end{frame}
+
+\begin{frame}{Research ethics: the unifying principle}
+  \begin{itemize}
+    \item Ethics violations differ in form but share one root cause:
+      \begin{itemize}
+        \item prioritizing career metrics over truth
+      \end{itemize}
+    \item Consequences include:
+      \begin{itemize}
+        \item retractions
+        \item loss of trust
+        \item damaged careers
+        \item wasted public resources
+      \end{itemize}
+  \end{itemize}
+\btVFill
+\end{frame}
+
+\begin{frame}{Responsible AI/LLM use}
+\end{frame}
+
+\begin{frame}{Responsible AI/LLM use}
+  \begin{itemize}
+    \item Allowed (with verification): brainstorming, outlining, summarizing text you provide, language clarity improvements
+    \item High-risk: factual claims, citations, technical decisions without checking sources
+    \item Not allowed: fabricated references; submitting AI-generated content you do not understand
+  \end{itemize}
+
+  \btVFill
+\end{frame}
+
+
+\begin{frame}{AI misconduct case: fabricated references}
+  \begin{itemize}
+    \item Several papers and submissions were found to contain:
+      \begin{itemize}
+        \item non-existent articles
+        \item plausible but fake author names
+        \item journals that do not match the cited topic
+      \end{itemize}
+    \item Authors admitted using ChatGPT for literature generation
+  \end{itemize}
+
+  \vspace{0.5em}
+  \textbf{Concrete case:}
+  \begin{itemize}
+    \item Fabricated citations detected during peer review
+    \item Some papers withdrawn before publication
+    \item Authors on blacklists for future submissions
+  \end{itemize}
+
+  \vspace{0.3em}
+  \tiny
+  Retraction Watch overview:\\
+  \url{https://retractionwatch.com/?s=paper+cites+chatgpt+fake+references}\\
+  \url{https://retractionwatch.com/2025/06/30/springer-nature-book-on-machine-learning-is-full-of-made-up-citations/}\\
+    \url{https://retractionwatch.com/2025/07/16/springer-nature-to-retract-machine-learning-book-following-retraction-watch-coverage/}
+   
+ \end{frame}
+ 
+\begin{frame}{AI misconduct case: content without understanding}
+  \begin{itemize}
+    \item AI-generated text may be:
+      \begin{itemize}
+        \item syntactically correct
+        \item conceptually inconsistent
+        \item internally contradictory
+      \end{itemize}
+    \item Submitting such content violates authorship responsibility
+  \end{itemize}
+
+  \vspace{0.5em}
+  \textbf{Concrete case:}
+  \begin{itemize}
+    \item 2023: preprints and student submissions flagged
+    \item Mathematical definitions and equations were incorrect
+    \item Authors unable to explain their own methods
+  \end{itemize}
+
+  \vspace{0.3em}
+  \tiny
+  Nature editorial discussion:\\
+  \url{https://www.nature.com/articles/d41586-023-00056-7}
+  \vspace{0.5em}
+\end{frame}
+
+\begin{frame}{AI misconduct case (STEM): undisclosed AI drafting $\rightarrow$ retraction}
+  \begin{itemize}
+    \item Authors left the phrase \emph{``Regenerate response''} in the paper
+    \item Indicates AI-assisted drafting without transparent disclosure
+    \item The journal issued a \textbf{retraction notice}
+  \end{itemize}
+
+  \vspace{0.5em}
+  \tiny
+  \url{https://doi.org/10.1088/1402-4896/acf6b8}\\
+  \url{https://www.nature.com/articles/d41586-023-02477-w}
+\btVFill
+\end{frame}
+
+\begin{frame}{Responsible AI use: common gray zones}
+  \begin{itemize}
+    \item Asking AI to:
+      \begin{itemize}
+        \item draft a method section you did not design
+        \item interpret results you did not analyze yourself
+        \item decide parameter choices or thresholds
+      \end{itemize}
+    \item These are not outright forbidden but very risky
+  \end{itemize}
+\btVFill
+\end{frame}
+
+\begin{frame}{Responsible AI use: transparancy}
+  \begin{itemize}
+    \item Add a disclosure of AI-generated content in submissions
+    \item Tool must be named; affected sections identified; brief description included
+  \end{itemize}
+
+  \vspace{0.5em}
+ 
+  \Deliverable{Write a 3--5 line AI usage statement aligned with IEEE disclosure expectations.}\\
+  \tiny 
+  \url{https://open.ieee.org/author-guidelines-for-artificial-intelligence-ai-generated-text/}
+  \btVFill
+\end{frame}
+
+
+
+
+\begin{frame}{Limitations as a virtue}
+  		\begin{tikzpicture}[remember picture,overlay]
+		\node[xshift=-4cm,yshift=-5cm] at (current page.north east){%
+      \includegraphics[width=0.4\textwidth]{../figures/limitations.png}};
+  \end{tikzpicture}
+\end{frame}
+
+
+\begin{frame}{Limitations as a virtue}
+  \begin{itemize}
+    \item Identifying limitations signals scientific maturity
+    \item Limitations clarify scope, validity, and evidence strength
+    \item Limitations generate future work and better follow-up studies
+  \end{itemize}
+\btVFill
+\end{frame}
+
+
+\begin{frame}{Limitations as a virtue}
+  \begin{itemize}
+    \item Identifying limitations signals scientific maturity
+    \item Limitations clarify scope, validity, and evidence strength
+    \item Limitations generate future work and better follow-up studies
+  \end{itemize}
+  \bigskip
+  \Activity{Write 3 specific limitations for your master thesis idea (data/method/evaluation).}
+  \btVFill
+\end{frame}
+
+% =========================================================
+% MODULE 2: STATE OF THE ART & DIGITAL RESEARCH (4h)
+% =========================================================
+\begin{frame}{Module 2: State of the Art \& Digital Research}
+  \begin{tikzpicture}
+    \node[xshift=-8.5cm,yshift=-4cm] at (current page.north east){%
+      \includegraphics[width=0.3\textwidth]{../figures/digr.png}};
+  \end{tikzpicture}
+\end{frame}
+
+\begin{frame}{Module 2 overview}
+  \begin{itemize}
+    \item Systematic literature review: searching and filtering
+    \item Reading for structure and extracting comparable information
+    \item Synthesis: taxonomy + comparison + evidence map
+    \item Gap analysis: turning review into a research direction
+    \item Reference management and citation discipline
+  \end{itemize}
+  \btVFill
+\end{frame}
+
+
+\begin{frame}{Step 1 in scientific working: State of the Art}
+  \begin{itemize}
+    \item Existing theories and observations
+    \item Main initial step of every research project
+  \end{itemize}
+  \bigskip
+  A strong SoTA makes your research question defensible, not arbitrary.\btVFill
+\end{frame}
+
+\begin{frame}{State of the Art: To-do list}
+  \begin{itemize}
+    \item Search the appropriate literature
+    \item Analyse the literature
+    \item Document the sources
+  \end{itemize}
+  \btVFill
+\end{frame}
+
+\begin{frame}{SoTA comparison matrix}
+\small
+\begin{tabular}{p{2.6cm} p{2.2cm} p{2.2cm} p{2.4cm} p{2.4cm}}
+\toprule
+\textbf{Source} &
+\textbf{Method} &
+\textbf{System / Data} &
+\textbf{Evaluation} &
+\textbf{Limitations} \\
+\midrule
+ &  &  &  &  \\
+ &  &  &  &  \\
+ &  &  &  &  \\
+\bottomrule
+\end{tabular}
+\btVFill
+\end{frame}
+
+\begin{frame}{State of the Art: quality awareness}
+  \begin{itemize}
+    \item Not everything that looks scientific is reliable
+    \item Search results may include:
+      \begin{itemize}
+        \item high-quality peer-reviewed journals
+        \item preprints (not yet reviewed)
+        \item low-quality or predatory outlets
+      \end{itemize}
+    \item Quality assessment is part of the literature review
+  \end{itemize}
+  \btVFill
+\end{frame}
+
+\begin{frame}{State of the Art: why source quality matters}
+  \begin{itemize}
+    \item A State of the Art is a filter
+    \item Including low-quality sources distorts:
+      \begin{itemize}
+        \item what is considered ``known''
+        \item which problems appear ``open''
+        \item how strong evidence really is
+      \end{itemize}
+    \item A weak source weakens the entire SoTA.
+  \end{itemize}
+
+  \btVFill
+\end{frame}
+
+\begin{frame}{What counts as a scientific source?}
+  \begin{itemize}
+    \item Core criteria:
+      \begin{itemize}
+        \item peer review
+        \item traceable authorship and affiliations
+        \item reproducible methods or arguments
+      \end{itemize}
+    \item Typical SoTA sources:
+      \begin{itemize}
+        \item established journals and conferences
+        \item standards documents (IEEE, ISO, etc.)
+        \item high-quality surveys and review papers
+      \end{itemize}
+    \item Not all PDFs indexed online meet these criteria
+  \end{itemize}
+\btVFill
+\end{frame}
+
+\begin{frame}{Predatory journals: a SoTA problem}
+  \begin{itemize}
+    \item Predatory journals:
+      \begin{itemize}
+        \item charge publication fees
+        \item simulate scientific appearance
+        \item provide little or no peer review
+      \end{itemize}
+\item Problems for SoTA:
+      \begin{itemize}
+        \item unverified or fabricated results enter the literature
+        \item fake consensus is created by volume
+        \item low-quality claims appear ``published''
+      \end{itemize}
+  \end{itemize}
+\btVFill
+\end{frame}
+
+\begin{frame}{Paper mills: systematic distortion of knowledge}
+  \begin{itemize}
+    \item Paper mills produce large numbers of template-based papers
+    \item Effects on SoTA:
+      \begin{itemize}
+        \item repeated figures, datasets, or wording
+        \item artificial reinforcement of weak ideas
+        \item difficulty identifying the true state of evidence
+      \end{itemize}
+    \item Individual papers may look plausible in isolation
+  \end{itemize}
+  \bigskip
+  \url{https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0312666}
+\btVFill
+\end{frame}
+
+\begin{frame}{Journal metrics: signals, not truth}
+  \begin{itemize}
+    \item Metrics are heuristics to support filtering
+    \item Common signals:
+      \begin{itemize}
+        \item indexing in trusted databases
+        \item citation activity within the field
+        \item editorial continuity over time
+      \end{itemize}
+    \item Metrics cannot replace reading and judgment
+  \end{itemize}
+\btVFill
+\end{frame}
+
+\begin{frame}{Impact factor: how to use it in SoTA work}
+  \begin{itemize}
+    \item Impact factor reflects:
+      \begin{itemize}
+        \item citation density of a journal
+        \item short-term attention patterns
+      \end{itemize}
+    \item Useful for SoTA:
+      \begin{itemize}
+        \item identifying central venues in a field
+      \end{itemize}
+    \item Dangerous for SoTA:
+      \begin{itemize}
+        \item excluding relevant niche work
+        \item assuming quality without reading
+      \end{itemize}
+  \end{itemize}
+\btVFill
+\end{frame}
+
+\begin{frame}{h-index: reading context, not authority}
+  \begin{itemize}
+    \item h-index summarizes an author's citation history
+    \item For SoTA:
+      \begin{itemize}
+        \item helps identify long-term contributors
+        \item does not validate individual papers
+      \end{itemize}
+    \item High h-index does not protect against error or bias
+  \end{itemize}
+\btVFill
+\end{frame}
+
+
+\begin{frame}{Search engines and databases (examples)}
+  \begin{itemize}
+    \item IEEE Xplore (engineering/CS)\\
+    \url{https://ieeexplore.ieee.org/}
+    \item Google Scholar (broad coverage)\\
+    \url{https://scholar.google.com/}
+    \item arXiv / techRxiv (preprints)\\
+    \url{https://arxiv.org/}, \url{https://www.techrxiv.org/}
+    \item Field-specific portals and library databases\\
+    \url{https://www.scopus.com/}, \url{https://www.webofscience.com/}, \url{https://www.fh-joanneum.at/en/university/services/library/finding-literature/}
+  \end{itemize}
+  \btVFill
+\end{frame}
+
+\begin{frame}{Why more than one search engine?}
+  \begin{itemize}
+    \item Coverage differs by publisher, discipline, and indexing strategy
+    \item Different query syntax and ranking biases
+    \item Cross-checking reduces systematic omission
+  \end{itemize}
+  \btVFill
+\end{frame}
+%  \Activity{Run the same query on two platforms and compare: overlap, missing clusters, and surprising hits.}
+
+\begin{frame}{Structured research question}
+  A literature search fails when the research question is vague.
+
+  \bigskip
+  Typical problems:
+  \begin{itemize}
+    \item too broad: thousands of irrelevant papers
+    \item too narrow: nothing found
+    \item unclear scope: inconsistent inclusion/exclusion
+  \end{itemize}
+
+  \bigskip
+\btVFill\end{frame}
+
+\begin{frame}{PICO framework for scientific literature search}
+  PICO structures a research question into searchable components:
+
+  \bigskip
+  \begin{itemize}
+    \item \textbf{P — Problem / Population}: system, domain, application context
+    \item \textbf{I — Intervention}: method, algorithm, design choice
+    \item \textbf{C — Comparison}: baseline, alternative method, status quo
+    \item \textbf{O — Outcome}: performance metric, property, effect
+  \end{itemize}
+\btVFill\end{frame}
+
+\begin{frame}{PICO examples}
+  \small
+  \begin{itemize}
+    \item \textbf{P}: Multi-agent systems with limited bandwidth
+    \item \textbf{I}: Event-triggered control strategies
+    \item \textbf{C}: Periodic or continuous communication control
+    \item \textbf{O}: Consensus error, communication load
+  \end{itemize}
+
+  \bigskip
+  \textbf{Resulting question:}\\
+  \emph{In multi-agent systems with limited bandwidth, do event-triggered control
+  strategies reduce communication load while maintaining bounded consensus compared
+  to periodic control?}
+  \btVFill
+\end{frame}
+
+
+\begin{frame}{Analyse the results: what a SoTA must do}
+  \begin{itemize}
+    \item Analysing, comparing, discovering relationships
+    \item Classifying existing work / theories / hypotheses
+    \item Identifying gaps and potential contributions
+  \end{itemize}
+\btVFill\end{frame}
+
+\begin{frame}{From PICO to search keywords}
+  Each PICO element contributes search terms:
+
+  \bigskip
+  \begin{itemize}
+    \item P $\rightarrow$ domain keywords (``multi-agent systems'', ``distributed control'')
+    \item I $\rightarrow$ method keywords (``event-triggered control'')
+    \item C $\rightarrow$ baseline keywords (``periodic control'', ``time-triggered'')
+    \item O $\rightarrow$ evaluation keywords (``communication load'', ``consensus error'')
+  \end{itemize}
+
+ \btVFill
+\end{frame}
+
+\begin{frame}{Activity: formulate your PICO question}
+  \Activity{
+  For your Master’s thesis topic:
+  \begin{enumerate}
+    \item Fill in all four PICO elements
+    \item Write one precise PICO-based research question
+    \item Extract \textbf{3--5 keywords} from each PICO element
+  \end{enumerate}
+  }
+ü  \btVFill
+\end{frame}
+
+
+\begin{frame}{Synthesis output: what to produce}
+  \begin{itemize}
+    \item A taxonomy (categories of approaches)
+    \item A comparison table (methods vs assumptions vs results)
+    \item An evidence map (strong vs weak evaluation)
+    \item A gap statement that motivates your work
+  \end{itemize}
+  \btVFill
+\end{frame}
+
+\begin{frame}{Document the source: non-negotiable}
+  \begin{itemize}
+    \item Taking ideas without citing is stealing
+    \item Plagiarism is a serious offence
+    \item It can have major academic consequences
+  \end{itemize}
+ \btVFill
+\end{frame}
+
+\begin{frame}{Activity: entering the State of the Art}
+  \Activity{
+  Follow this procedure for your Master's thesis topic:
+  \begin{enumerate}
+    \item Define \textbf{3--5 keywords} describing your topic
+    \item Use a scientific database (e.g.\ IEEE Xplore, Scopus, Google Scholar)
+    \item Identify \textbf{three candidate papers} using:
+      \begin{itemize}
+        \item venue credibility (journal / major conference)
+        \item basic metrics discussed (indexing, citation signal, year)
+      \end{itemize}
+    \item For each paper, record:
+      \begin{itemize}
+        \item title and venue
+        \item publication year
+        \item why you selected it (1 sentence)
+      \end{itemize}
+  \end{enumerate}
+  }
+  \btVFill
+\end{frame}
+
+\begin{frame}{AI-assisted research (responsible)}
+  \begin{itemize}
+    \item Helpful: keyword expansion, summarizing papers you provide, drafting a taxonomy structure
+    \item Risky: hallucinated citations, fabricated claims, biased framing
+    \item Verification rule: every claim used in your text must be traceable to a real source you have read
+  \end{itemize}
+  \btVFill
+\btVFill\end{frame}
+
+% Four tool slides (Engineering) with "proper prompts"
+% ---- latin1-safe versions (no unicode characters) ----
+
+\begin{frame}{AI research tool: Perplexity}
+  \url{https://www.perplexity.ai/}\\
+  \bigskip
+\begin{itemize}
+  \item Best for: fast \textbf{web-grounded} overviews with clickable sources (triage + starting point)
+  \item Use when: you need \textbf{recent} info, standards updates, datasheets, tool comparisons
+  \item Do not use for: final claims without reading the original sources
+  \item Workflow: query $\rightarrow$ open sources $\rightarrow$ verify $\rightarrow$ cite original
+\end{itemize}
+\btVFill\end{frame}
+
+\begin{frame}{AI research tool: Perplexity}
+You are my research assistant for an engineering literature review.\\
+Topic: Continuous Delivery in Embedded Systems.\\
+Goal: Give me a source-backed overview in 8--12 bullet points.\\
+Constraints:
+\begin{itemize}
+  \item   Use sources from 2018--2026 only.
+\item Use only primary/authoritative sources
+\item For each bullet: include a citation link and a 1-sentence note why the source is credible.
+\item Add a section "Open Questions / Gaps" with 5 bullet points (each gap must cite at least one source).
+\item Add Search string I can reuse in IEEE Xplore/Google Scholar.
+\item Do NOT invent references\end{itemize}
+ \btVFill
+\end{frame}
+
+
+\begin{frame}{AI research tool: Consensus}
+  \url{https://consensus.app}\\
+    \bigskip
+\begin{itemize}
+  \item Best for: \textbf{evidence-focused} questions where you want: "what do studies say overall?"
+  \item Use when: you want quick \textbf{claim-to-paper} mapping and a sense of agreement/disagreement
+  \item Do not use for: engineering standards/specs unless the tool surfaces the exact standard text
+  \item Workflow: question $\rightarrow$ collect papers $\rightarrow$ read methods/results $\rightarrow$ synthesize yourself
+\end{itemize}
+\btVFill\end{frame}
+
+\begin{frame}{AI research tool: Consensus}
+Help me answer an engineering research question using peer-reviewed evidence. \\
+Question: What is the state of the art of continous delivery in embedded systems?\\
+Inclusion criteria:
+\begin{itemize}
+  \item Peer-reviewed papers (or authoritative preprints) from 2015-2026
+  \item Must report an evaluation (experiment, benchmark, field test, or simulation with validation)
+\end{itemize}
+
+Output format:
+\begin{itemize}
+  \item Evidence summary in 6 bullets. Each bullet must cite 1-3 specific papers.
+  \item Consensus level (High/Medium/Low) with reasons (e.g., heterogeneity, dataset mismatch, small N).
+  \item A table: Paper, Method, Setup/Data, Metric, Key result,Limitation.
+\item 5 concrete gaps/open problems supported by at least one cited paper each.
+\end{itemize}
+Rules:
+\begin{itemize}
+\item Do not generalize beyond what papers tested.
+\item If papers conflict, show both sides and explain why.
+\end{itemize}\end{frame}
+
+\begin{frame}{AI research tool: Elicit}
+  \url{https://elicit.com/}
+\begin{itemize}
+  \item Best for: building a \textbf{paper set} quickly and extracting structured fields (method, dataset, metrics)
+  \item Use when: you need a systematic start for a state-of-the-art matrix / comparison table
+  \item Do not use for: "final truth" summaries without reading key papers yourself
+  \item Workflow: seed query $\rightarrow$ filter $\rightarrow$ extract fields $\rightarrow$ manually verify key entries
+\end{itemize}
+\btVFill\end{frame}
+
+\begin{frame}{AI research tool: Elicit}
+I am doing an engineering state-of-the-art review.\\
+Topic: Continuous Delivery in Embedded Systems.\\
+Task:
+\begin{itemize}
+ \item Find 20 to 30 highly relevant papers.
+ \item  Prefer survey papers + the most-cited and most-recent primary papers.
+ \item For each paper extract: (1) problem, (2) method family, (3) dataset/setup, (4) metrics,
+  (5) main result, (6) key limitation, (7) reproducibility artifacts (code/data yes/no).
+ \item Then propose a taxonomy with 4-6 categories and assign each paper to one category.
+ \item Finally, propose 3 strong gap statements, each backed by at least 2 papers. 
+\end{itemize}
+Rules: Do not fabricate details.
+\end{frame}
+
+\begin{frame}{AI research tool: ChatGPT}
+  \url{https://chat.openai.com/}
+\begin{itemize}
+  \item Best for: structuring, explanations, comparison frameworks, writing clarity
+  \item Use when: you already have sources (PDFs/notes) and want synthesis 
+  \item Do not use for: generating citations from memory,  always require DOI/links
+  \item Workflow: provide excerpts $\rightarrow$ ask for structured synthesis $\rightarrow$ verify $\rightarrow$ write final
+\end{itemize}
+\btVFill\end{frame}
+
+\begin{frame}{AI research tool: ChatGPT}
+
+You are my engineering writing and synthesis assistant.  
+I will paste excerpts (or my notes) from papers and standards.
+
+\medskip
+\textbf{Tasks:}
+\begin{itemize}
+  \item Extract core claims, assumptions, and evaluation setup from each excerpt
+  \item Build a comparison table: Source | Claim | Evidence | Conditions | Limitations
+  \item Write a synthesis paragraph leading to one precise gap statement
+  \item Propose 2 candidate research questions and 2 testable hypotheses
+\end{itemize}
+
+\medskip
+\textbf{Rules:}
+\begin{itemize}
+  \item Use ONLY the information I provide; ask if something is missing
+  \item Do NOT invent citations or facts; if unsure, write ``unknown''
+  \item Keep engineering precision: units, constraints, boundary conditions
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{AI research tool: NotebookLM}
+  \href{https://notebooklm.google.com/}{\texttt{https://notebooklm.google.com/}}
+
+\begin{itemize}
+  \item Best for: source-grounded summarization and comparison
+  \item Use when: you have PDFs (papers, standards, reports) as primary material
+  \item Strength: answers are restricted to uploaded documents
+  \item Limitation: no external knowledge beyond provided sources
+  \item Workflow: upload PDFs $\rightarrow$ ask targeted questions $\rightarrow$ trace answers to sources
+\end{itemize}
+
+\btVFill
+\end{frame}
+
+
+\begin{frame}{Activity: AI-assisted SoTA entry (comparison)}
+  \Activity{
+  Repeat the previous SoTA entry task using \textbf{one AI research tool} of your choice:
+  \begin{enumerate}
+    \item Use the \textbf{same keywords} as before
+    \item Ask the tool to suggest \textbf{three relevant papers}
+    \item Record for each paper:
+      \begin{itemize}
+        \item title and venue
+        \item year of publication
+        \item how the tool justified its relevance
+      \end{itemize}
+    \item Compare with your manual search:
+      \begin{itemize}
+        \item Which papers overlap?
+        \item Which are new?
+        \item Which seem questionable or unclear?
+      \end{itemize}
+  \end{enumerate}
+  }
+  \btVFill
+\end{frame}
+
+\begin{frame}{Reference management (hands-on)}
+  \begin{tikzpicture}
+    \node[xshift=-2cm,yshift=-4cm] at (current page.north west){%
+      \includegraphics[width=0.5\textwidth]{../figures/ref.png}};
+  \end{tikzpicture}
+\end{frame}
+\begin{frame}{Reference management (hands-on)}
+  \begin{itemize}
+    \item Use a manager: Bib\TeX{}, Zotero, Mendeley, Citavi, \ldots
+    \item Fix metadata early (authors, title, venue, year, DOI)
+    \item Tag papers by method/dataset/claim type
+    \item Link notes: claim $\rightarrow$ evidence $\rightarrow$ your interpretation
+  \end{itemize}
+  \btVFill
+\end{frame}
+
+\begin{frame}{Digital persistence}
+  \begin{itemize}
+    \item DOI: persistent identifier for papers and datasets
+    \item ORCID: persistent identifier for researchers
+    \item Best practice: prefer DOI in references when available; keep metadata clean
+  \end{itemize}
+  \btVFill
+\end{frame}
+
+% =========================================================
+% MODULE 3: METHODOLOGY & DATA MANAGEMENT (3h)
+% =========================================================
+
+\begin{frame}{METHODOLOGY \& DATA MANAGEMENT}
+  \begin{tikzpicture}
+    \node[xshift=-8.5cm,yshift=-4cm] at (current page.north east){%
+      \includegraphics[width=0.6\textwidth]{../figures/meth.png}};
+  \end{tikzpicture}
+\end{frame}
+\begin{frame}{Module 3 overview}
+  \begin{itemize}
+    \item Choosing between quantitative, qualitative, and mixed methods
+    \item Validity threats and how to mitigate them
+    \item Reproducibility: minimum standards and documentation
+    \item Open science and licensing awareness
+  \end{itemize}
+  \btVFill
+\end{frame}
+
+\begin{frame}{Scientific claims determine methods}
+  Scientific methods exist to support different \emph{types of claims}:
+  \begin{itemize}
+    \item \textbf{Descriptive}: what exists / what happens
+    \item \textbf{Comparative}: which approach performs better
+    \item \textbf{Causal}: why something happens
+    \item \textbf{Design}: how to build something that meets requirements
+  \end{itemize}
+\btVFill
+\end{frame}
+\begin{frame}{Claim types and suitable evidence}
+  \begin{itemize}
+    \item Descriptive claims $\rightarrow$ measurements, observations, surveys
+    \item Comparative claims $\rightarrow$ benchmarks, controlled experiments
+    \item Causal claims $\rightarrow$ interventions, ablations, counterfactuals
+    \item Design claims $\rightarrow$ requirements, prototypes, validation tests
+  \end{itemize}
+\btVFill
+\end{frame}
+
+\begin{frame}{From claim to candidate methods}
+  A scientific claim must be supported by an appropriate method.
+  \bigskip
+  \Activity{
+  For your Master’s thesis:
+  \begin{enumerate}
+    \item Identify your \textbf{dominant claim type}
+      (descriptive / comparative / causal / design)
+    \item List \textbf{two candidate methods} that could support this claim
+    \item For each method, specify:
+      \begin{itemize}
+        \item the type of evidence it would produce
+        \item one key assumption it relies on
+      \end{itemize}
+  \end{enumerate}
+  }
+  \btVFill
+\end{frame}
+
+\begin{frame}{Constraints eliminate methods}
+  Constraints remove options
+  \begin{itemize}
+    \item Data constraints (no labels, noisy sensors, limited access)
+    \item Resource constraints (time, hardware, compute, participants)
+    \item Ethical constraints (privacy, safety, consent)
+    \item Reproducibility constraints (custom hardware, proprietary data)
+  \end{itemize}
+ \btVFill
+\end{frame}
+
+\begin{frame}{Method selection: practical constraints}
+  \begin{itemize}
+    \item Data availability and quality
+    \item Time and resource constraints
+    \item Ethical constraints (privacy, consent, safety)
+    \item Reproducibility constraints (can others replicate your setup?)
+  \end{itemize}
+  \bigskip
+  \Activity{
+  Complete a method constraint mapping with \textbf{2 items}:
+  \begin{itemize}
+    \item Constraint
+    \item Consequence for method choice (allowed / excluded / modified)
+  \end{itemize}
+  }
+\btVFill
+\end{frame}
+
+\begin{frame}{Validity threats follow from method choices}
+  Every method introduces \emph{specific risks}:
+  \begin{itemize}
+    \item Internal validity: confounders, leakage, uncontrolled variation
+    \item External validity: limited generalization
+    \item Construct validity: proxy metrics, misaligned measurements
+    \item Statistical validity: power, uncertainty, multiple testing
+  \end{itemize}
+\btVFill
+\end{frame}
+
+\begin{frame}{Validity threats follow from method choices}
+  \Activity{
+  Based on your chosen method:
+  \begin{itemize}
+    \item identify \textbf{two concrete validity threats}
+    \item describe \textbf{one mitigation strategy} for each
+  \end{itemize}
+  }
+  \btVFill
+\end{frame}
+
+\begin{frame}{Reproducibility: minimum standard}
+  A method is scientifically acceptable only if others can:
+  \begin{itemize}
+    \item understand what was done
+    \item repeat the procedure
+    \item regenerate key results
+  \end{itemize}
+\btVFill
+\end{frame}
+
+
+\begin{frame}{Reproducibility: minimum checklist}
+  \begin{itemize}
+    \item Version control for code and text
+    \item Document dependencies and environment
+    \item Data provenance and preprocessing steps
+    \item One command (or notebook) to regenerate key outputs
+    \item Parameter logging and random seeds (where applicable)
+  \end{itemize}
+  \btVFill
+\end{frame}
+
+\begin{frame}{Data management follows method}
+  Your method determines:
+  \begin{itemize}
+    \item what data you generate
+    \item how sensitive it is
+    \item how long it remains useful
+  \end{itemize}
+ \btVFill
+\end{frame}
+
+
+\begin{frame}{Data Management Plan (DMP): what to include}
+  \begin{itemize}
+    \item Data types and formats
+    \item Storage, backup, and access control
+    \item Naming conventions and metadata
+    \item Privacy/ethics constraints
+    \item Sharing plan (when, where, license)
+  \end{itemize}\bigskip
+\Activity{Write bullet points for a Data Management Plan (DMP) for your master thesis.}\btVFill\end{frame}
+
+
+\begin{frame}{Open science: licensing literacy}
+  \begin{itemize}
+    \item Proprietary licenses (e.g., vendor datasheets): public access, copyrighted
+    \item Creative Commons licenses: CC BY, CC BY-SA, CC BY-NC, CC0\\
+      \url{https://creativecommons.org/licenses/}
+      \item Software licenses: MIT, Apache 2.0, GPL, BSD\\
+      \url{https://choosealicense.com/}
+      \item For your thesis: check institutional policies and choose appropriate licenses for your outputs
+  \end{itemize}
+\btVFill\end{frame}
+
+% =========================================================
+% MODULE 4: TECHNICAL IMPLEMENTATION (3h)
+% =========================================================
+
+\begin{frame}{Technical Implementation}
+  \begin{tikzpicture}
+    \node[xshift=-8.5cm,yshift=-4cm] at (current page.north east){%
+      \includegraphics[width=0.3\textwidth]{../figures/impl.png}};
+  \end{tikzpicture}
+\end{frame}
+\begin{frame}{Module 4 overview}
+  \begin{itemize}
+    \item Writing environment: LaTeX vs Word
+    \item Structuring technical documents for maintainability
+    \item Publication-quality figures (vector, reproducible)
+    \item Tooling basics: templates, references, consistent workflow
+  \end{itemize}
+  \btVFill
+\end{frame}
+
+\begin{frame}{LaTeX vs.\ Word: practical comparison}
+  \begin{itemize}
+    \item \textbf{LaTeX}: separates content from layout; handles equations, figures, and references reliably
+    \item \textbf{Word}: mixes content and layout; works for short documents, becomes brittle for technical reports
+  \end{itemize}
+  \btVFill
+\end{frame}
+
+
+\begin{frame}{A maintainable report structure}
+  \begin{itemize}
+    \item One file per section (or chapter)
+    \item Central bibliography file
+    \item Figures in a dedicated folder with consistent naming
+    \item A single command to rebuild the PDF and regenerate key figures
+  \end{itemize}
+\btVFill
+\end{frame}
+
+\begin{frame}[fragile]{Example: reproducible project structure}
+
+\begin{lstlisting}
+project/
++-- data/
+|   +-- raw/
+|   +-- processed/
++-- src/
+|   +-- analysis.py
+|   +-- utils.py
++-- figures/
++-- environment.yml
++-- README.md
+\end{lstlisting}
+
+\end{frame}
+
+
+
+\begin{frame}[fragile]{A maintainable report structure: LaTeX glue}
+\textbf{main.tex}
+
+\begin{verbatim}
+\input{sections/introduction}
+\input{sections/methodology}
+\input{sections/results}
+\input{sections/discussion}
+\end{verbatim}
+\btVFill
+\end{frame}
+
+
+\begin{frame}{Figures: modern quality standards}
+  \begin{itemize}
+    \item Use vector graphics (PDF/SVG) instead of screenshots
+    \item Label axes and include units
+    \item Keep font sizes readable and consistent
+    \item Show uncertainty where relevant
+    \item Every figure should have one message
+  \end{itemize}
+  \btVFill
+\end{frame}
+
+\begin{frame}{Reproducible plotting workflow (concept)}
+  \begin{itemize}
+    \item Input data $\rightarrow$ script $\rightarrow$ figure export
+    \item Store scripts with the paper repository
+    \item Regenerate figures automatically when data changes
+    \end{itemize}
+  \bigskip
+  \Activity{Define a figure pipeline: where raw data live, where processed data live, and how figures are produced.}
+  \btVFill
+\end{frame}
+
+% =========================================================
+% MODULE 5: SCIENTIFIC WRITING & PEER REVIEW (3h)
+% (Expanded with your slide content: good writing, cut clutter, active/passive,
+%  IMRAD implementation, references/DOI/ISO4, direct vs indirect quotes,
+%  review process steps)
+% =========================================================
+
+\begin{frame}{Scientific Writing \& Peer Review}
+\begin{tikzpicture}
+    \node[xshift=-8.5cm,yshift=-4cm] at (current page.north east){%
+      \includegraphics[width=0.3\textwidth]{../figures/write.png}};
+\end{tikzpicture}
+\end{frame}
+
+\begin{frame}{Module 5 overview}
+  \begin{itemize}
+    \item Good scientific writing: clarity and reader care
+    \item Cutting clutter: style rules and rewrites
+    \item Active vs passive voice; positive vs negative phrasing
+    \item Implementation: Title, Abstract, Introduction, Method, Results, Discussion, References
+    \item Peer review process and simulation
+  \end{itemize}
+  \btVFill
+\end{frame}
+
+% ----------------------------
+% Good scientific writing
+% ----------------------------
+
+\begin{frame}{Good scientific writing: definition}
+  \begin{itemize}
+    \item Communicates an idea effectively and clearly
+    \item Requires:
+      \begin{itemize}
+        \item You have something to say
+        \item You know what you want to say
+        \item You have clear and logical thinking
+      \end{itemize}
+  \end{itemize}
+  \btVFill
+\end{frame}
+
+\begin{frame}{A practical test of understanding}
+  \begin{itemize}
+    \item If you understand what you are doing, you can communicate the essence of your Master thesis in 5 sentences
+  \end{itemize}\bigskip
+  \Activity{Write 3 sentences what your Master thesis is about: background, question, hypothesis, method, expected result.}
+  \btVFill
+\end{frame}
+
+\begin{frame}{Clarity requires editing time}
+  \begin{quote}
+    ``I have only made this letter longer because I have not had the time to make it shorter.''
+  \end{quote}
+  \center{Blaise Pascal, Lettres proviciales 16, 1657}
+    \vspace{0.3cm}
+  \begin{itemize}
+    \item Clear writing is revised writing
+    \item Plan time for editing, not only drafting
+  \end{itemize}
+  \btVFill
+\end{frame}
+
+\begin{frame}{Example of unclear writing}
+\small
+\begin{quote}
+For decreasing communication load and overcoming network constrains (sic!), such as
+the limited bandwidth and data loss in multi-agent networks, this paper integrates the
+two control strategies to investigate the bounded consensus problem of multi-agent
+systems (MASs) with external disturbance on the basis of an undirected graph, namely,
+the quantized control and the event-triggered control.
+\end{quote}
+
+\footnotesize
+(Zheng-Guang et al., 2018, \emph{IEEE Transactions on Circuits and Systems I: Regular Papers},
+65(7), p.\ 2232)
+\end{frame}
+
+
+\begin{frame}{Improved writing}
+\small
+We implement two control strategies to decrease communication load and overcome network
+constraints, including limited bandwidth and data loss in multi-agent networks.
+Specifically, we investigate the bounded consensus problem of multi-agent systems (MASs)
+with external disturbance based on an undirected graph: quantized control and event-triggered control.
+\end{frame}
+
+
+\begin{frame}{Example of unclear writing}
+\small
+\begin{quote}
+In the existence of the external disturbance, two types of the high-gain control laws with the uniform
+quantized relative state measurements for the bounded consensus problem of MASs are first discussed,
+respectively. Then, in order to save the limited network resources in a multi-agent network, the
+event-triggered quantized communication protocols are designed based on the first case to obtain the
+bounded consensus in multi-agent systems.
+\end{quote}
+
+\footnotesize
+(Zheng-Guang et al., 2018, \emph{IEEE Transactions on Circuits and Systems I: Regular Papers},
+65(7), p.\ 2232)
+\end{frame}
+
+
+\begin{frame}{Improved writing}
+\small
+We discuss two types of high-gain control laws with uniform quantized relative-state measurements
+for the bounded consensus problem of multi-agent systems (MASs). These laws form the basis for
+event-triggered, quantized communication protocols designed to save network resources while still
+achieving bounded consensus under external disturbance.
+\end{frame}
+
+
+\begin{frame}{Habits that improve writing quality}
+  \begin{itemize}
+    \item Read scientific literature regularly
+    \item Explain your research to someone outside your discipline
+    \item Actively try not to bore the reader
+    \item Start writing early and refine iteratively
+  \end{itemize}
+  \btVFill
+\end{frame}
+
+\begin{frame}{Scientific writing: enforceable rules}
+  Every scientific text must satisfy:
+  \begin{itemize}
+    \item \textbf{Traceability}: claims point to data, figures, or sources
+    \item \textbf{Precision}: quantities, units, and conditions are explicit
+    \item \textbf{Consistency}: terminology and notation are stable
+    \item \textbf{Verifiability}: methods and results can be checked
+  \end{itemize}
+  \btVFill
+\end{frame}
+
+% ----------------------------
+% Cut the clutter (expanded)
+% ----------------------------
+
+\begin{frame}{Cut the clutter: core rules}
+  \begin{itemize}
+    \item Do not use nouns instead of verbs (nouns slow the reader down)
+    \item Do not use vague words
+    \item Do not use unnecessary acronyms and jargon
+    \item Avoid passive voice by default
+    \item Keep subject and verb close
+  \end{itemize}
+  \btVFill
+\end{frame}
+
+\begin{frame}{Common clutter phrases}
+  \begin{itemize}
+    \item ``This project provides a review of \ldots''
+    \item ``As it is well known \ldots''
+    \item ``As it has been shown \ldots''
+    \item ``It should be emphasized that \ldots''
+    \item ``It can be regarded that \ldots''
+    \item ``It is very hard \ldots''
+  \end{itemize}\bigskip
+  \btVFill
+\end{frame}
+
+\begin{frame}{Empty words (too vague)}
+  \begin{itemize}
+    \item ``methodologic \ldots''
+    \item ``very hard \ldots''
+    \item ``important''
+    \item ``highly''
+    \item ``basic tenets of''
+  \end{itemize}
+\btVFill\end{frame}
+
+\begin{frame}{Kill adverbs (default)}
+  \begin{itemize}
+    \item Many adverbs add little information: very, really, quite, basically, generally, etc.
+    \item If emphasis is needed, quantify or specify conditions instead
+  \end{itemize}
+ \btVFill
+\end{frame}
+
+\begin{frame}{Avoid unnecessary jargon and acronyms}
+  \begin{itemize}
+    \item Every acronym is a memory burden
+    \item Use acronyms only if they repeat many times and are standard in the field
+    \item Avoid jargon when a plain term is correct
+  \end{itemize}
+\btVFill
+\end{frame}
+
+\begin{frame}{Use shorter versions}
+  \begin{itemize}
+    \item Based on the assumption that $\rightarrow$ if
+    \item Due to the fact that $\rightarrow$ because
+    \item Have an effect on $\rightarrow$ affect
+    \item Have the same opinion $\rightarrow$ agree
+    \item A majority of $\rightarrow$ most
+    \item A number of $\rightarrow$ many
+    \item Give rise to $\rightarrow$ cause
+    \item Less frequently occurring $\rightarrow$ rare
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Make ``not'' sentences positive}
+  \begin{itemize}
+    \item ``She was not often right'' $\rightarrow$ ``She was usually wrong''
+    \item ``Does not have'' $\rightarrow$ ``lacks''
+    \item ``Did not exceed 5\%'' $\rightarrow$ ``was at most 5\%''
+  \end{itemize}
+\btVFill
+\end{frame}
+
+\begin{frame}{Remove unnecessary ``there is/there are''}
+  \begin{itemize}
+    \item ``There was a long line of problems in the setup'' $\rightarrow$ ``Problems lined the setup.''
+    \item ``There are many students who like to write'' $\rightarrow$ ``Many students like to write.''
+  \end{itemize}
+\btVFill
+\end{frame}
+
+\begin{frame}{Before/after example 1}
+  \textbf{Before:} Critical errors have been estimated to occur in 0.1\% to 1.2\% of those chips coming straight from the factory.
+
+  \vspace{0.6em}
+  \textbf{After:} Critical errors occur in 0.1\% to 1.2\% of factory-fresh chips.
+\end{frame}
+
+\begin{frame}{Before/after example 2}
+  \textbf{Before:} Ultimately system testing guards not only against critical errors but also plays a role in developmental processes as diverse as chips designing, software developing, and algorithm optimization.
+
+  \vspace{0.6em}
+  \textbf{After:} Besides preventing critical errors, system testing also plays a role in chips designing, software developing, and algorithm optimization.
+\end{frame}
+
+
+\begin{frame}{Figure references without clutter}
+  \begin{itemize}
+    \item Avoid: ``As we can see from Figure 1 \ldots''
+    \item Prefer:
+      \begin{itemize}
+        \item ``Figure 1 schows\ldots''
+        \item ``A return function below the threshold yields two trajectories (Fig. 1).''
+      \end{itemize}
+  \end{itemize}
+\btVFill
+\end{frame}
+
+% ----------------------------
+% Voice and sentence polarity
+% ----------------------------
+
+\begin{frame}{Active vs passive voice}
+  \begin{itemize}
+    \item Passive voice can hide the actor and slow comprehension
+    \item Active voice usually clarifies responsibility and improves flow
+    \item Passive voice can be appropriate when the actor is irrelevant
+  \end{itemize}
+\btVFill
+\end{frame}
+
+\begin{frame}{Paragraphs}
+\begin{itemize}
+\item One paragraph = one main idea
+\item Start with a topic sentence that states the main idea clearly
+\item \item Take home message at the beginning
+Its hard to follow details when you don't know where you are going
+\item Follow with supporting sentences that provide evidence, explanation, or examples
+\end{itemize}
+\btVFill\end{frame}
+
+\begin{frame}{Paragraphs}
+\begin{itemize}
+\item Logical flow of ideas
+\item Chronological, spatial, or importance order
+\item Transition words don't fix logical gasps
+\end{itemize}
+\btVFill\end{frame}
+
+\begin{frame}{Logical flaws example}
+  \vspace{-0.3cm}
+\footnotesize{``We note that if one concentrates exclusively on Fermi surface- integrated quantities, such as thermal conductivity or penetration depth, distinguishing d-wave states from anisotropic, deeply nodal s states can be very difficult. As shown in Fig. 7, both d-wave and anisoropic s$\pm$ states give reasonable fits to the pristine penetration depth data for x = 1.0. \textbf{Furthermore}, distinguishing on the basis of disorder is difficult \textbf{because} here we do not have a well-established link between the pair-breaking rate and irradiation dosage; \textbf{thus}, it is possible to find parameters for either ``dirty d wave'' or ``dirty nodal s wave'' cases that fit both the Dl and DTc data for the single x = 1 sample. \textbf{However}, on the basis of the fits to the heavily K-doped alloys near x = 0.9 in Fig. 7, we see that there is substantial additional curvature at low temperatures that is incompatible with the cos 2f d wave. It is conceivable that a strong antiphase cos 6f component in a d-wave state could fit the penetration depth data. \textbf{However}, there is no theory in support of such a state, and we therefore conclude that the superconducting condensate in this system hass-wave symmetry throughout the phase diagram and simply evolves in an anisotropic manner as roughly depicted in Fig. 1. In Fig. 7, we show a comparison between the state with accidental nodes and a d-wave state for x = 0.91 and x = 0.92. For x = 0.91 and x = 0.92, we see the incompatibility of a d-wave gap with experimental data. \textbf{However}, for x = 1.0, both d-wave and s± states with accidental nodes can fit the data. \textbf{Thus}, we cannot rule out a crossover between s-wave and d-wave symmetries between x = 0.92 and x = 1.0. \textbf{However}, ARPES measurements provide a strong argument against this scenario (11)'' (Cho et al. (2016 in Sci. Adv.2: e1600807, page 5))}
+\end{frame}
+
+\begin{frame}{Scientific writing: rules still apply with AI}
+  \begin{itemize}
+    \item AI can assist drafting, but does not change scientific standards
+    \item Clarity, traceability, and accountability remain mandatory
+    \item Responsibility for every sentence stays with the author
+  \end{itemize}
+  \btVFill
+\end{frame}
+
+
+
+\begin{frame}{Common AI-induced writing failures}
+  \begin{itemize}
+    \item Vague phrases (``significant improvement'', ``robust performance'')
+    \item Missing boundary conditions and assumptions
+    \item Results stated without reference to figures or tables
+    \item Methods described without enough detail for reproduction
+  \end{itemize}
+
+  \btVFill
+\end{frame}
+
+% ----------------------------
+% IMRAD Implementation (expanded)
+% ----------------------------
+\begin{frame}{IMRAD structure}
+  \begin{itemize}
+    \item Introduction: why the problem matters and what you did
+    \item Method: how you did it
+    \item Results: what you found
+    \item Discussion: what it means
+  \end{itemize}\btVFill
+\end{frame}
+
+\begin{frame}{IMRAD: reader's questions}
+  \btVFill\tiny\url{{https://www.researchgate.net/publication/358880772\_How\_to\_Design_Write\_and_Publish\_a\_Scientific_Article\_A\_Short\_Guide\_Based\_ on\_the\_QTNano\_Group\_Experience\_-\_October\_9\_2022}}
+  \begin{tikzpicture}[remember picture,overlay]
+		\node[xshift=-16cm,yshift=-3cm] at (current page.north east){%
+      \includegraphics[width=0.8\textwidth]{../figures/overview.jpg}};
+  \end{tikzpicture}
+\end{frame}
+
+\begin{frame}{What needs to go into your report / thesis / paper}
+  \begin{itemize}
+    \item Title
+    \item Abstract
+    \item Introduction
+    \item Method or Implementation
+    \item Results
+    \item Discussion
+    \item References
+   \end{itemize}\bigskip\tiny{\url{https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=5165369}}\btVFill
+\end{frame}
+
+% ---- Title ----
+\begin{frame}{Title: a practical recipe}
+  \begin{itemize}
+    \item What is the paper about? Who/what was studied? What were the results?
+    \item Create a list of keywords
+    \item Create a sentence that includes the keywords
+    \item Cut the clutter
+  \end{itemize}\bigskip
+\url{https://library.sacredheart.edu/c.php?g=29803&p=185911 }
+\\
+\url{https://blog.wordvice.com/how-to-write-the-perfect-title-for-your-research-paper/} 
+\btVFill
+\end{frame}
+
+\begin{frame}{Title: quality checklist}
+  \Activity{Based on the checklist, write a good title for your Master thesis.}
+\end{frame}
+
+% ---- Abstract ----
+\begin{frame}{Abstract}
+  \begin{itemize}
+    \item The whole paper in miniature
+    \item Summary of the main story
+    \item Highlights from each section
+    \item Often the only part many people read
+  \end{itemize}
+  \btVFill
+\end{frame}
+
+\begin{frame}{Abstract}
+\begin{quotation}
+  Anything of importance can be said in 15 minutes
+\end{quotation}
+Ludwig Wittgenstein
+\end{frame}
+\begin{frame}{Abstract: questions it should answer}
+  \begin{itemize}
+    \item What is your paper about?
+    \item Why is it important?
+    \item How did you do it?
+    \item What did you find?
+    \item Why are your findings important?
+  \end{itemize}
+  \btVFill
+\end{frame}
+
+\begin{frame}{Abstract: a robust structure}
+  \begin{itemize}
+    \item One sentence of background
+    \item Question / hypothesis
+    \item Brief summary of methods
+    \item Key results
+    \item Take-home message
+  \end{itemize}
+  \btVFill
+\end{frame}
+
+\begin{frame}{Abstract: the bad and the ugly}
+  \footnotesize{``We introduce an effective fusion-based technique to enhance both day-time and night-time hazy scenes. When inverting the Koschmieder light transmission model, and by contrast with the common implemen-tation of the popular dark-channel [1], we estimate the airlight on image patches and not on the entire image. Local airlight estimation is adopted because, under night-time conditions, the lighting generally arises from multiple localized artificial sources, and is thus intrinsically non-uniform. Selecting the sizes of the patches is, however, non-trivial. Small patches are desirable to achieve fine spatial adaptation to the atmospheric light, but large patches help improve the airlight estimation accuracy by increasing the possibility of capturing pixels with airlight appearance (due to severe haze). For this reason, multiple patch sizes are considered to generate several images, that are then merged together. The discrete Laplacian of the original image is provided as an additional input to the fusion process to reduce the glowing effect and to emphasize the finest image details. Similarly, for day-time scenes we apply the same principle but use a larger patch size. For each input, a set of weight maps are derived so as to assign higher weights to regions of high contrast, high saliency and small saturation. Finally the derived inputs and the normalized weight maps are blended in a multi-scale fashion using a Laplacian pyramid decomposition. Extensive experimental results demonstrate the effectiveness of our approach as com-pared with recent techniques, both in terms of computational efficiency and the quality of the outputs." (C. Ancuti et al. (2020) in IEEE Transactions on Image Processing, vol. 29, p 6264)}
+\end{frame}
+
+\begin{frame}
+\small{We propose a computationally efficient method for enhancing hazy images in both daytime and nighttime conditions. Instead of estimating atmospheric light globally, we estimate it locally on image patches to handle uneven illumination, especially at night. Multiple patch sizes are combined to adapt to varying haze levels, and image details are enhanced using the discrete Laplacian. For daytime images, larger patches and higher weights for high-contrast, salient, and low-saturation regions are used. All inputs are fused via multi-scale Laplacian pyramid blending, yielding higher-quality results than recent methods, as shown in extensive experiments. (Based on C. Ancuti et al. (2020) in IEEE Transactions on Image Processing, vol. 29, p 6264, rewritten by chatGPT)}
+\end{frame}
+
+
+\begin{frame}{Abstract: a robust structure}
+\Activity{Draft an abstract for your Master thesis. Strictly not more than 200 words.}
+\end{frame}
+
+\begin{frame}{Abstract: clarity exercise}
+  \begin{itemize}
+    \item Remove all detail that is not needed to understand the main story
+    \item Replace vague terms with specifics (numbers, conditions)
+    \item Ensure the final sentence communicates meaning, not just results
+  \end{itemize}
+  \bigskip
+  \Activity{Reduce your abstract draft by 20\% without losing information.}
+  \btVFill
+\end{frame}
+
+% ---- Introduction ----
+\begin{frame}{Introduction: core job}
+  \begin{itemize}
+    \item Give the background: what is known
+    \item State gaps in knowledge: what is unknown
+    \item State your hypothesis / question / purpose
+    \item Present your approach (plan of attack)
+    \item Short statement of the added value of your work
+  \end{itemize}
+  \btVFill
+\end{frame}
+
+\begin{frame}{Introduction: be kind to your reader}
+  \begin{itemize}
+    \item Write for a general audience (within the discipline)
+    \item Summarize what is known at a high level
+    \item State the added value early and clearly
+    \item Do not include results or implications here
+    \item Be kind to your reader
+  \end{itemize}
+   \btVFill
+\end{frame}
+
+\begin{frame}{Introduction: a 4-paragraph plan}
+  \begin{itemize}
+    \item Paragraph 1: context and motivation
+    \item Paragraph 2: what is known (high-level) + limitations of existing work
+    \item Paragraph 3: gap + research question/hypothesis
+    \item Paragraph 4: contribution + paper outline
+  \end{itemize}
+  \btVFill
+\end{frame}
+
+% ---- Method ----
+\begin{frame}{Method section: checklist}
+  \begin{itemize}
+    \item Who, what, when, where, how, why
+    \item Clear overview of what was done
+    \item Sufficient information to replicate the study
+    \item Be complete and be kind to your reader
+    \item Use graphs and subsections when helpful
+  \end{itemize}
+  \btVFill
+\end{frame}
+
+\begin{frame}{Method: standard subparts}
+  \begin{itemize}
+    \item Materials
+    \item Protocols
+    \item Measurements
+    \item Implementation details (code, parameters, environment)
+    \item Analysis
+  \end{itemize}
+  \btVFill
+\end{frame}
+
+\begin{frame}{Method: reproducibility language}
+  \begin{itemize}
+    \item Include parameter settings, versions, and environment details
+    \item Define evaluation protocol (splits, baselines, metrics)
+    \item Specify exclusion criteria and preprocessing steps
+  \end{itemize}
+  \btVFill
+\end{frame}
+
+% ---- Results ----
+\begin{frame}{Results: what belongs here}
+  \begin{itemize}
+    \item Summarize what the data show
+    \item Use figures and tables for details
+    \item Highlight the most important numbers from tables
+    \item Include all relevant results (not only the nicest)
+  \end{itemize}
+  \btVFill
+\end{frame}
+
+\begin{frame}{Results vs discussion: keep them separate}
+  \begin{itemize}
+    \item Comments on meaning belong in the discussion section
+    \item What you did belongs in the method section (name tests here, do not re-explain)
+  \end{itemize}
+\btVFill\end{frame}
+
+\begin{frame}{Results: figure/table discipline}
+  \begin{itemize}
+    \item Each figure has one message
+    \item Captions describe what is shown and how to read it
+    \item Refer to figures in the text with a claim, not narration
+  \end{itemize}
+\btVFill\end{frame}
+
+% ---- Discussion ----
+\begin{frame}{Discussion: what it must contain}
+  \begin{itemize}
+    \item Key findings
+    \item Context: compare with prior work; support/challenge paradigm
+    \item Strengths and limitations (be specific)
+    \item What's next: confirmatory studies, unanswered questions
+    \item Tell readers why they should care
+    \item Final take-home message
+  \end{itemize}\btVFill
+\end{frame}
+
+\begin{frame}{Discussion: writing guidance}
+  \begin{itemize}
+    \item Tell a story
+    \item Focus on what your data support (avoid overclaiming)
+    \item Limitations are important and should be specific
+    \item Take-home message should be crystal clear
+  \end{itemize}
+\btVFill\end{frame}
+
+\begin{frame}{Limitations: a structured template}
+  \begin{itemize}
+    \item Data limitations: coverage, bias, noise, missingness
+    \item Method limitations: assumptions, failure cases, sensitivity
+    \item Evaluation limitations: baselines, metrics, generalization
+    \item Practical limitations: deployment constraints (if relevant)
+  \end{itemize}
+  \btVFill
+\end{frame}
+
+% ---- References ----
+\begin{frame}{References: minimum completeness}
+  References must include all necessary information:
+  \begin{itemize}
+    \item Authors
+    \item Title
+    \item Journal / venue
+    \item Publication year
+    \item Number / issue (if applicable)
+    \item DOI (Digital Object Identifier), when available
+  \end{itemize}
+  \btVFill
+\end{frame}
+\begin{frame}{References: style and tooling}
+  \begin{itemize}
+    \item Different styles exist (APA, IEEE, \ldots): follow the venue rules  
+      \begin{itemize}
+        \item APA: \url{https://apastyle.apa.org}
+        \item IEEE: \url{https://www.ieee.org/conferences/publishing/templates.html}
+      \end{itemize}
+    \item Use ISO~4 for journal abbreviations (when required)  
+      \begin{itemize}
+        \item ISO~4: \url{https://www.iso.org/standard/3569.html}
+        \item LTWA: \url{https://www.issn.org/services/online-services/access-to-the-ltwa/}
+      \end{itemize}
+    \item Use a reference manager (Bib\TeX{}, Citavi, Zotero, \ldots)  
+      \begin{itemize}
+        \item Bib\TeX{}: \url{https://www.bibtex.org}
+        \item Citavi: \url{https://www.citavi.com}
+        \item Zotero: \url{https://www.zotero.org}
+      \end{itemize}
+  \end{itemize}
+\btVFill
+\end{frame}
+
+
+
+
+\begin{frame}{Direct vs indirect quotes}
+  \begin{itemize}
+    \item Direct quote: not recommended in technical writing; if used, quote exactly and cite precisely
+    \item Indirect quote (paraphrase): recommended; express content in your own words and cite the source
+  \end{itemize}
+\btVFill\end{frame}
+
+% ----------------------------
+% Peer review (integrating your Review_process deck content)
+% ----------------------------
+\begin{frame}{Peer review: definition}
+ \begin{tikzpicture}[remember picture,overlay]
+    \node[xshift=-8.5cm,yshift=-4cm] at (current page.north east){%
+      \includegraphics[width=0.3\textwidth]{../figures/review.png}};
+ \end{tikzpicture}
+  \end{frame}
+
+
+\begin{frame}{Peer review: why it exists}
+  \begin{itemize}
+    \item Peer review has been a formal part of scientific communication since early scientific journals
+    \item The Philosophical Transactions of the Royal Society is the first journal to formalize the peer review process under the editorship of Henry Oldenburg (1618-1677).
+    \item Review improves quality: clarity, validity, novelty, and relevance
+    \item Review can also detect misconduct (not perfectly, but it helps)
+  \end{itemize}
+  \bigskip
+\end{frame}
+
+\begin{frame}{Peer review can identify misconduct}
+  \begin{itemize}
+    \item Data fabrication
+    \item Plagiarism
+    \item Biased reporting
+    \item Redundant / duplicate publication
+    \item Image manipulation
+  \end{itemize}
+\btVFill
+\end{frame}
+
+\begin{frame}{Typical peer review process (high level)}
+  \begin{itemize}
+    \item Manuscript submission
+    \item Editorial screening
+    \item Peer review
+    \item Author revision
+    \item Final decision
+    \item Publication
+  \end{itemize}
+  \btVFill
+\end{frame}
+
+\begin{frame}{Typical peer review process (high level)}
+  \btVFill
+  \tiny{\url{https://authorservices.wiley.com/Reviewers/journal-reviewers/what-is-peer-review/the-peer-review-process.html}}
+
+\begin{tikzpicture}[remember picture,overlay]
+    \node[xshift=-8.5cm,yshift=-4cm] at (current page.north east){%
+      \includegraphics[width=0.8\textwidth]{../figures/wiley}};
+\end{tikzpicture}
+\end{frame}
+
+\begin{frame}{Typical peer review process (high level)}
+  \btVFill
+  \tiny{\url{https://journals.plos.org/plosone/s/editorial-and-peer-review-process}}
+
+\begin{tikzpicture}[remember picture,overlay]
+    \node[xshift=-8.5cm,yshift=-4cm] at (current page.north east){%
+      \includegraphics[width=0.95\textwidth]{../figures/SubmissionProcessPlos.png}};
+\end{tikzpicture}
+\end{frame}
+
+\begin{frame}{Peer review: common types}
+  \begin{itemize}
+    \item Single-blind: reviewers know authors, but not vice versa
+    \item Double-blind: neither reviewers nor authors know each other
+    \item Open review: identities are known to all parties
+    \item Post-publication review: review happens after publication
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Peer review}
+  \url{https://www.biomedcentral.com/getpublished/peer-review-process}\\
+  \url{https://journals.ieeeauthorcenter.ieee.org/submit-your-article-for-peer-review/about-the-peer-review-process/}\\
+\end{frame}
+
+\begin{frame}{As a reviewer: constructive feedback}
+  \begin{itemize}
+    \item Provide detailed feedback
+    \item Highlight strengths and weaknesses
+    \item Offer specific suggestions for improvement
+    \item Indicate areas needing further development
+  \end{itemize}
+\btVFill
+\end{frame}
+
+\begin{frame}{Review rubric}
+  \begin{itemize}
+    \item Contribution: Is the gap and novelty clear?
+    \item Methods: Are they appropriate and reproducible?
+    \item Evidence: Are results supported and uncertainty addressed?
+    \item Writing: Is the text clear and well structured?
+    \item Limitations: Are they specific and honest?
+  \end{itemize}
+\btVFill\end{frame}
+
+\begin{frame}{Peer review simulation}
+  \textbf{Activity}
+  \begin{itemize}
+    \item Each student reviews an abstract
+    \item Use the rubric to produce:
+      \begin{itemize}
+        \item Summary (shows understanding)
+        \item Major issues (validity, missing baselines, unclear methods)
+        \item Minor issues (typos, formatting)
+      \end{itemize}
+    \item Authors write a response plan (what changed, where, why)
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Responding to reviewers: a response letter template}
+  \begin{itemize}
+    \item Quote the reviewer comment (or summarize precisely)
+    \item Response:
+      \begin{itemize}
+        \item What you changed (section/page/line)
+        \item Why you changed it (or why not)
+        \item Additional evidence/analysis if needed
+      \end{itemize}
+    \item Tone: professional, specific, calm
+  \end{itemize}
+\btVFill
+\end{frame}
+
+\begin{frame}{Scientific conferences}
+  \begin{itemize}
+    \item Conferences are not just presentation venues.
+    \item They serve to:
+      \begin{itemize}
+        \item test ideas early
+        \item receive focused expert feedback
+        \item position work within a research community
+        \item establish visibility and priority
+      \end{itemize}
+  \end{itemize}
+  \btVFill
+\
+\end{frame}
+
+\begin{frame}{Conferences vs journals (engineering)}
+  \begin{itemize}
+    \item Conferences:
+      \begin{itemize}
+        \item faster review cycles
+        \item shorter papers
+        \item emphasis on novelty and ideas
+      \end{itemize}
+    \item Journals:
+      \begin{itemize}
+        \item slower, more thorough review
+        \item longer, complete studies
+        \item emphasis on validation and completeness
+      \end{itemize}
+  \end{itemize}
+\btVFill
+\end{frame}
+
+\begin{frame}{Why poster presentations matter}
+  They allow:
+  \begin{itemize}
+    \item direct, one-on-one scientific discussion
+    \item probing questions about assumptions and limitations
+    \item feedback before formal publication
+  \end{itemize}
+  \btVFill
+\end{frame}
+
+\begin{frame}{IMRAD structure for scientific posters}
+  A poster follows the same logic as a paper:
+
+  \bigskip
+  \begin{itemize}
+    \item \textbf{Introduction}: problem, motivation, gap
+    \item \textbf{Methods}: approach, assumptions, constraints
+    \item \textbf{Results}: key findings (not everything)
+    \item \textbf{Discussion}: interpretation, limitations, outlook
+  \end{itemize}
+\btVFill
+\end{frame}
+
+\begin{frame}{Poster content: focus and omission}
+  \begin{itemize}
+    \item Include:
+      \begin{itemize}
+        \item one clear research question
+        \item one method storyline
+        \item 1-3 key results
+      \end{itemize}
+    \item Exclude:
+      \begin{itemize}
+        \item long derivations
+        \item full literature reviews
+        \item implementation details
+      \end{itemize}
+  \end{itemize}
+\btVFill
+\end{frame}
+
+\begin{frame}{Why you must prepare questions}
+  Asking questions is part of scientific participation.
+  \begin{itemize}
+    \item questions test understanding
+    \item questions reveal assumptions
+    \item questions drive improvement
+  \end{itemize}
+
+\btVFill
+\end{frame}
+
+\begin{frame}{Final course format: institute poster conference}
+  The course concludes with a poster conference at the institute.
+
+  \bigskip
+  Each student:
+  \begin{itemize}
+    \item prepares one scientific poster (IMRAD-based)
+    \item presents and discusses their work
+    \item actively engages with other posters
+  \end{itemize}
+\btVFill
+\end{frame}
+
+\begin{frame}{Assessment criteria (poster conference)}
+  Evaluation considers:
+  \begin{itemize}
+    \item clarity of research question
+    \item scientific structure (IMRAD logic)
+    \item ability to explain and defend choices
+    \item quality of questions asked to others
+  \end{itemize}
+\btVFill
+\end{frame}
+
+\end{document}
+
+\begin{frame}{Three modern requirements}
+  \begin{itemize}
+    \item AI integration: explicit benefits and failure modes
+    \item Limitations as a virtue: scientific maturity and credibility
+    \item Digital persistence: DOI/ORCID and durable scholarly identity
+  \end{itemize}\btVFill
+\end{frame}
+
+\begin{frame}{AI integration: boundaries and verification}
+  \begin{itemize}
+    \item AI is a productivity tool, not a truth engine
+    \item Treat outputs as drafts, not sources
+    \item Verification must be built into the workflow (citations, claims, numbers)
+  \end{itemize}
+\btVFill\end{frame}
+
+\begin{frame}{Limitations as scientific quality}
+  \begin{itemize}
+    \item Limitations demonstrate awareness of assumptions and scope
+    \item Strong limitations connect to threats to validity and failure cases
+    \item A good limitations section increases trust
+  \end{itemize}\btVFill
+\end{frame}
+
+% =========================================================
+% APPENDIX: Slide reservoirs (extra depth for 4-hour blocks)
+% =========================================================
+
+\begin{frame}{Reservoir: 4-hour block plan for literature review}
+  \begin{itemize}
+    \item 45 min: query design + operator practice + search logs
+    \item 45 min: screening and inclusion/exclusion criteria
+    \item 60 min: extraction sheets + comparison table construction
+    \item 45 min: taxonomy building + gap statements
+    \item 30 min: reference manager workflow + DOI/metadata hygiene
+    \item 15 min: wrap-up and deliverables
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Reservoir: extraction sheet (printable checklist)}
+  \begin{itemize}
+    \item Citation + DOI + venue quality notes
+    \item Problem statement and scope
+    \item Method summary (1--2 sentences)
+    \item Key assumptions (explicit/implicit)
+    \item Dataset/setup + evaluation protocol
+    \item Baselines + metrics
+    \item Main findings + uncertainty
+    \item Limitations + failure cases
+    \item Repro artifacts (code/data availability)
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Reservoir: comparison table template}
+  \begin{table}
+    \centering
+    \small
+    \begin{tabular}{p{0.18\linewidth} p{0.20\linewidth} p{0.18\linewidth} p{0.18\linewidth} p{0.18\linewidth}}
+      \toprule
+      Paper & Method idea & Data/Setup & Key result & Limitations \\
+      \midrule
+      Author (Year) & \ldots & \ldots & \ldots & \ldots \\
+      Author (Year) & \ldots & \ldots & \ldots & \ldots \\
+      \bottomrule
+    \end{tabular}
+  \end{table}
+\end{frame}
+
+\begin{frame}{Reservoir: writing clinic block (60 minutes)}
+  \begin{itemize}
+    \item 10 min: identify clutter patterns (adverbs, vague words, passive voice)
+    \item 20 min: sentence rewrites in pairs (before/after)
+    \item 20 min: paragraph restructure (topic sentence + evidence + close)
+    \item 10 min: peer feedback with rubric (clarity, scope, claims)
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Reservoir: licensing and datasheet citation}
+  \begin{itemize}
+    \item Proprietary datasheets: publicly accessible, copyrighted; cite source; avoid full reproduction
+    \item CC licenses: understand attribution and share-alike constraints
+    \item Open-source code/data: follow license obligations (notice, attribution, copyleft)
+  \end{itemize}
+  \Takeaway{If in doubt: cite clearly, prefer paraphrase, and avoid copying entire figures/tables.}
+\end{frame}
+
+% !TeX program = pdflatex
+% ------------------------------------------------------------
+% APPENDIX / RESERVOIR EXPANSION
+% Drop this into the end of your merged deck (after \appendix),
+% replacing or extending the current reservoir section.
+% ------------------------------------------------------------
+
+
+% =========================================================
+% RESERVOIR A: Module 2 (SoTA) - 4h deep dive
+% =========================================================
+
+\begin{frame}{Reservoir A: 4-hour SoTA session plan (minute-by-minute)}
+  \begin{itemize}
+    \item 0--10: Goal + deliverables + example of a strong SoTA paragraph
+    \item 10--35: Query design (keywords, synonyms, exclusions) + operator practice
+    \item 35--55: Database differences + snowballing (cited-by / references)
+    \item 55--70: Break + set up search log template
+    \item 70--105: Screening rules (inclusion/exclusion) + calibration exercise
+    \item 105--120: Break
+    \item 120--165: Extraction sheets + building a comparison table
+    \item 165--195: Taxonomy building + evidence map + gap statements
+    \item 195--225: Reference manager workflow + DOI hygiene
+    \item 225--240: Wrap-up + assign deliverable
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{SoTA deliverables: what students must hand in}
+  \begin{itemize}
+    \item Search log (database, query, filters, date, hit count, notes)
+    \item Screening criteria (inclusion/exclusion) + number of remaining papers
+    \item Extraction sheet for at least 8--12 papers
+    \item Comparison table (at least 8 papers)
+    \item Taxonomy slide (3--5 categories with representative papers)
+    \item 1--2 gap statements + 1 draft research question
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Search log: template (copy-paste into report)}
+  \small
+  \begin{tabular}{p{0.16\linewidth}p{0.28\linewidth}p{0.20\linewidth}p{0.12\linewidth}p{0.18\linewidth}}
+    \toprule
+    Database & Query & Filters & Hits & Notes \\
+    \midrule
+    IEEE Xplore & \ldots & years, fields & \ldots & \ldots \\
+    Scholar & \ldots & since 2020 & \ldots & \ldots \\
+    arXiv & \ldots & category & \ldots & \ldots \\
+    \bottomrule
+  \end{tabular}
+  \vspace{0.6em}
+
+  \Takeaway{If you cannot describe your search, your SoTA is not reproducible.}
+\end{frame}
+
+\begin{frame}{Query design: keyword expansion (exercise slide)}
+  \begin{itemize}
+    \item Start with 3--5 core keywords
+    \item Add synonyms, abbreviations, and related terms
+    \item Add exclusions (NOT terms) to reduce noise
+    \item Add context constraints (domain, dataset, application)
+  \end{itemize}
+  \Activity{Create a keyword map with 15 terms, grouped into 3 clusters (concepts).}
+\end{frame}
+
+\begin{frame}{Advanced search operators: practice problems}
+  \begin{itemize}
+    \item Build a query that finds \textbf{methods} AND \textbf{evaluation} in \textbf{domain X}
+    \item Build a query that excludes a common confound topic
+    \item Build a query that targets \textbf{survey/review} papers only
+    \item Build a query that targets \textbf{benchmark/dataset} papers
+  \end{itemize}
+  \Deliverable{Submit 4 queries and explain what each is designed to capture.}
+\end{frame}
+
+\begin{frame}{Screening calibration (important quality step)}
+  \begin{itemize}
+    \item Take 15 titles/abstracts
+    \item Each student labels: include / exclude / unsure
+    \item Compare disagreements
+    \item Refine criteria until agreement improves
+  \end{itemize}
+  \Takeaway{Screening is a method. Treat it like one.}
+\end{frame}
+
+\begin{frame}{Inclusion/exclusion criteria: examples}
+  \begin{itemize}
+    \item Inclusion:
+      \begin{itemize}
+        \item peer-reviewed OR top preprints
+        \item provides evaluation on real dataset
+        \item within years 2019--2026
+      \end{itemize}
+    \item Exclusion:
+      \begin{itemize}
+        \item no methods detail (irreproducible)
+        \item irrelevant domain
+        \item duplicates / minor variants without new evidence
+      \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Extraction sheet: the minimum fields}
+  \begin{itemize}
+    \item Citation + DOI
+    \item Problem + motivation (1 sentence)
+    \item Method (key idea + assumptions)
+    \item Data/setup + protocol
+    \item Baselines + metrics
+    \item Key results (numbers)
+    \item Limitations + failure cases
+    \item Reproducibility: code/data availability
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Extraction sheet: ``claims and evidence'' discipline}
+  \begin{itemize}
+    \item For each key claim, record:
+      \begin{itemize}
+        \item claim statement
+        \item evidence type (experiment/simulation/qualitative)
+        \item where in paper (section, figure/table)
+        \item limitations or confounds
+      \end{itemize}
+    \item Prevents: vague SoTA summaries that are not defensible
+  \end{itemize}
+  \Activity{Extract 3 claims from one paper and connect each to evidence + limitation.}
+\end{frame}
+
+\begin{frame}{Comparison table: how to choose comparison dimensions}
+  \begin{itemize}
+    \item Comparison dimensions should match your research question:
+      \begin{itemize}
+        \item assumptions
+        \item data requirements
+        \item computational cost
+        \item robustness and failure modes
+        \item interpretability
+        \item evaluation realism
+      \end{itemize}
+  \end{itemize}
+\btVFill
+\end{frame}
+
+\begin{frame}{Taxonomy building: two strategies}
+  \begin{itemize}
+    \item Top-down: start from known families (e.g., model classes)
+    \item Bottom-up: cluster papers by shared assumptions and evaluation settings
+  \end{itemize}
+\btVFill
+\end{frame}
+
+\begin{frame}{Evidence map: strength vs. relevance}
+  \begin{itemize}
+    \item High strength: strong evaluation, multiple datasets, ablations
+    \item High relevance: matches your domain constraints
+    \item Common issue: strong evidence in irrelevant setting
+  \end{itemize}
+  \Deliverable{Plot papers into a 2x2: (strength low/high) vs (relevance low/high).}
+\end{frame}
+
+\begin{frame}{Gap analysis: the ``mismatch'' sentence}
+  \begin{itemize}
+    \item Template:
+      \begin{itemize}
+        \item ``Existing approaches assume \underline{\hspace{2.2cm}}, but in practice \underline{\hspace{2.2cm}}.''
+        \item ``Evaluations focus on \underline{\hspace{2.2cm}}, yet the real constraint is \underline{\hspace{2.2cm}}.''
+      \end{itemize}
+  \end{itemize}
+  \Activity{Write 2 mismatch sentences and turn one into a research question.}
+\end{frame}
+
+\begin{frame}{SoTA paragraph structure (course-ready)}
+  \begin{itemize}
+    \item Topic sentence: what is the sub-area about?
+    \item Grouping sentence: categorize the main approaches
+    \item Comparison: where they differ (assumptions/evidence)
+    \item Mini-gap: what remains unclear or untested
+  \end{itemize}
+  \Deliverable{Write one paragraph with 3 citations and an explicit mini-gap sentence.}
+\end{frame}
+
+\begin{frame}{Reference management: DOI hygiene checklist}
+  \begin{itemize}
+    \item Confirm: authors, title, venue, year, pages/issue
+    \item Add DOI when available
+    \item Normalize capitalization and special characters
+    \item Remove duplicates and inconsistent keys
+  \end{itemize}
+\end{frame}
+
+% =========================================================
+% RESERVOIR B: Methodology + Validity + DMP (3h deep dive)
+% =========================================================
+
+\begin{frame}{Reservoir B: 3-hour session plan}
+  \begin{itemize}
+    \item 0--20: method families and what claims they support
+    \item 20--50: mapping question $\rightarrow$ method (exercise)
+    \item 50--70: validity threats (examples + mitigations)
+    \item 70--85: break
+    \item 85--120: reproducibility checklist + repo structure
+    \item 120--150: data management plan (DMP) template
+    \item 150--170: licensing / open science basics
+    \item 170--180: wrap-up deliverables
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Claim types and what evidence can support}
+  \begin{itemize}
+    \item Descriptive: observation and measurement quality dominate
+    \item Predictive: held-out evaluation and robustness dominate
+    \item Causal: controls, randomization, confounds dominate
+    \item Design: constraints, tradeoffs, and comparisons dominate
+  \end{itemize}
+  \Activity{Label your research question with a claim type; justify.}
+\end{frame}
+
+\begin{frame}{Threats to validity: a worksheet}
+  \begin{itemize}
+    \item Internal validity: \underline{\hspace{6cm}}
+    \item External validity: \underline{\hspace{6cm}}
+    \item Construct validity: \underline{\hspace{6cm}}
+    \item Statistical conclusion validity: \underline{\hspace{6cm}}
+  \end{itemize}
+  \Deliverable{Fill in at least one threat + one mitigation per row.}
+\end{frame}
+
+\begin{frame}{Reproducibility: minimal repo template}
+  \begin{itemize}
+    \item \texttt{README.md} (how to run + reproduce)
+    \item \texttt{data/} (raw + processed rules)
+    \item \texttt{src/} (code)
+    \item \texttt{notebooks/} (optional, exploratory)
+    \item \texttt{figures/} (generated outputs only)
+    \item \texttt{environment.yml} / \texttt{requirements.txt}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{DMP: a one-page template}
+  \begin{itemize}
+    \item Data: types, formats, sources
+    \item Collection/preprocessing pipeline
+    \item Storage + backup
+    \item Access control + privacy
+    \item Documentation: metadata + naming conventions
+    \item Sharing: where/when + license
+  \end{itemize}
+  \Activity{Draft a DMP for your project in 10 bullet points.}
+\end{frame}
+
+\begin{frame}{Open science and licensing: quick classifier}
+  \begin{itemize}
+    \item Text/figures: Creative Commons (CC BY, CC BY-SA, CC0, \ldots)
+    \item Code: MIT / Apache 2.0 / GPL (obligations differ)
+    \item Data: depends (may require anonymization or restricted access)
+    \item Datasheets: typically proprietary; cite and avoid full reproduction
+  \end{itemize}
+\end{frame}
+
+% =========================================================
+% RESERVOIR C: Technical implementation (3h deep dive)
+% =========================================================
+
+\begin{frame}{Reservoir C: 3-hour session plan}
+  \begin{itemize}
+    \item 0--30: LaTeX vs Word + templates + folder structure
+    \item 30--60: BibTeX workflow + citation discipline
+    \item 60--75: break
+    \item 75--120: figures: vector export + reproducible plotting
+    \item 120--150: cross-references, tables, captions, appendices
+    \item 150--175: collaboration workflow (Overleaf/Git)
+    \item 175--180: wrap-up deliverables
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{LaTeX project: minimal skeleton (concept)}
+  \begin{itemize}
+    \item \texttt{main.tex} includes section files
+    \item \texttt{sections/introduction.tex}, \texttt{sections/method.tex}, \ldots
+    \item \texttt{refs.bib}
+    \item \texttt{figures/} contains exported PDF/SVG figures
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Citation discipline: ``one claim, one source''}
+  \begin{itemize}
+    \item Each factual claim should be traceable to a source
+    \item Avoid chaining citations without reading originals
+    \item Prefer DOI references when available
+  \end{itemize}
+  \Activity{Take a paragraph and attach a citation to each claim that needs one.}
+\end{frame}
+
+\begin{frame}{Figures: publication readiness checklist}
+  \begin{itemize}
+    \item Vector format (PDF/SVG), not screenshots
+    \item Readable fonts and consistent sizing
+    \item Labeled axes with units
+    \item Captions explain what is shown and how to interpret it
+    \item Colors are not the only encoding (use markers/linestyles)
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Captions: a 3-part template}
+  \begin{itemize}
+    \item What is shown (object of the plot)
+    \item How it was produced (key method details)
+    \item What to notice (the message)
+  \end{itemize}
+  \Deliverable{Write one caption using this template for a figure you plan to create.}
+\end{frame}
+
+\begin{frame}{Tables: when to use them}
+  \begin{itemize}
+    \item Use tables for exact numbers and comparisons
+    \item Use figures for trends and shapes
+    \item Highlight the key numbers in the text (do not copy the whole table)
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Appendix design: making the main story cleaner}
+  \begin{itemize}
+    \item Main text: the argument and key evidence only
+    \item Appendix: additional experiments, ablations, parameter sweeps
+    \item Good practice: refer to appendix items explicitly (``see Appendix A'')
+  \end{itemize}
+\end{frame}
+
+% =========================================================
+% RESERVOIR D: IMRAD writing clinic (3h deep dive)
+% =========================================================
+
+\begin{frame}{Reservoir D: 3-hour writing clinic plan}
+  \begin{itemize}
+    \item 0--20: what good writing is (clarity, reader care)
+    \item 20--45: title + abstract drafting (in pairs)
+    \item 45--60: break
+    \item 60--95: intro structure (gap + contribution) workshop
+    \item 95--130: methods clarity + reproducibility checklist
+    \item 130--155: results vs discussion separation exercise
+    \item 155--175: clutter cutting + voice + polarity rewrites
+    \item 175--180: wrap-up deliverable
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Title workshop: the 3-title drill}
+  \begin{itemize}
+    \item Title A: broad and vague
+    \item Title B: accurate and specific
+    \item Title C: accurate and concise
+  \end{itemize}
+  \Activity{Write all three. Then choose C and improve it once more.}
+\end{frame}
+
+\begin{frame}{Abstract workshop: sentence-by-sentence roles}
+  \begin{itemize}
+    \item Sentence 1: background and context
+    \item Sentence 2: gap / research question
+    \item Sentence 3: method summary
+    \item Sentence 4: key result (with number)
+    \item Sentence 5: meaning / implication (scope-limited)
+  \end{itemize}
+  \Deliverable{Draft a 5-sentence abstract (then expand if needed).}
+\end{frame}
+
+\begin{frame}{Introduction workshop: ``known / unknown / we do''}
+  \begin{itemize}
+    \item Known: summarize the state of the art (high level)
+    \item Unknown: state the gap (specific)
+    \item We do: contribution + approach
+  \end{itemize}
+  \Activity{Write 3 paragraphs: one for each. Add 2 citations to the ``known'' paragraph.}
+\end{frame}
+
+\begin{frame}{Methods workshop: replication questions}
+  \begin{itemize}
+    \item What data? Where from? How preprocessed?
+    \item What model/procedure? With what parameters?
+    \item What evaluation? Which splits? Which baselines?
+    \item What environment? Versions? Random seeds?
+  \end{itemize}
+  \Deliverable{Answer these in bullets; if you cannot, your method is not complete.}
+\end{frame}
+
+\begin{frame}{Results vs discussion: the sentence test}
+  \begin{itemize}
+    \item Results sentences contain \textbf{what happened} (numbers, trends)
+    \item Discussion sentences contain \textbf{why it matters} (interpretation, context)
+  \end{itemize}
+  \Activity{Split a mixed paragraph into two clean paragraphs: results and discussion.}
+\end{frame}
+
+\begin{frame}{Clutter cutting clinic: common targets}
+  \begin{itemize}
+    \item remove empty phrases (``it should be emphasized'')
+    \item replace vague words (``important'') with specifics
+    \item convert passive to active (when actor matters)
+    \item make negatives positive (when clearer)
+    \item kill adverbs (unless necessary)
+  \end{itemize}
+  \Deliverable{Reduce word count by 20\% without losing content (track changes).}
+\end{frame}
+
+% =========================================================
+% RESERVOIR E: Peer review simulation (3h deep dive)
+% =========================================================
+
+\begin{frame}{Reservoir E: 3-hour peer review simulation plan}
+  \begin{itemize}
+    \item 0--20: what peer review evaluates (rubric)
+    \item 20--35: how to write constructive reviews
+    \item 35--45: assign papers/excerpts + calibration
+    \item 45--60: break
+    \item 60--105: independent reviewing (write review)
+    \item 105--125: ex
+  \end{itemize}
+\end{frame}
+\end{document}
